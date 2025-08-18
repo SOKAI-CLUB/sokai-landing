@@ -5,8 +5,7 @@
 /* Custom Font - EsportGraph */
 @font-face {
   font-family: 'EsportGraph';
-  src: url('/fonts/EsportGraph-Regular.woff2') format('woff2'),
-       url('/fonts/EsportGraph-Regular.ttf') format('truetype'),
+  src: url('/fonts/EsportGraph-Regular.ttf') format('truetype'),
        url('/fonts/EsportGraph-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
