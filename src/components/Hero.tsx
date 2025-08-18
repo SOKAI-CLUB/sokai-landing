@@ -19,7 +19,7 @@ const Hero = () => {
         <div className="relative w-full h-full">
           {/* Hero Background Image */}
           <Image
-            src="/HERO.png"
+            src="/Hero.png"
             alt="SOKAI Hero Background"
             fill
             className="object-cover"
