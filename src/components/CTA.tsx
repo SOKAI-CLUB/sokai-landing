@@ -32,7 +32,7 @@ const CTA = () => {
   ];
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-sokai-black relative overflow-hidden">
+    <div id="contact" className="py-16 md:py-24 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-sokai-neon/5 rounded-full blur-3xl"></div>
@@ -192,7 +192,7 @@ const CTA = () => {
           </p>
         </motion.div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -11,7 +11,7 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="pt-32 pb-16 md:pt-40 md:pb-28 bg-sokai-charcoal">
+    <div className="pt-32 pb-16 md:pt-40 md:pb-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <motion.div
@@ -21,7 +21,7 @@ const StatsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-sans font-bold text-sokai-neon mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-sans font-bold text-sokai-white mb-4">
             Real-time tracking. Dynamic badges. Authentic rewards.
           </h2>
         </motion.div>
@@ -55,7 +55,7 @@ const StatsSection = () => {
           ))}
         </motion.div>
       </div>
-    </section>
+    </div>
   );
 };
 

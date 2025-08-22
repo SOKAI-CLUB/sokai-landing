@@ -63,6 +63,9 @@ export default {
           'neon': '#7CFF00',
           'gray': '#A6A6A6',
           'white': '#FFFFFF',
+          'light': '#FAFAFA',
+          'dark-text': '#2A2A2A',
+          'light-gray': '#6B7280',
         }
       },
       borderRadius: {

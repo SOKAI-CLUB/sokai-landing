@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { AlertCircle, Users, FileX, Gamepad2, Smartphone, Shield, ArrowRight, Camera, Brain, Award } from 'lucide-react';
+import { AlertCircle, Users, FileX, Gamepad2, Smartphone, Shield } from 'lucide-react';
 
 const ProblemSolution = () => {
   const problems = [
@@ -41,12 +41,6 @@ const ProblemSolution = () => {
     }
   ];
 
-  const processSteps = [
-    { icon: Camera, label: 'Record', description: 'Capture training with phone' },
-    { icon: Brain, label: 'Analyze', description: 'AI processes movement data' },
-    { icon: Shield, label: 'Certify', description: 'Blockchain validation' },
-    { icon: Award, label: 'Reward', description: 'Unlock achievements' }
-  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -65,7 +59,7 @@ const ProblemSolution = () => {
   };
 
   return (
-    <section id="problem-solution" className="py-16 md:py-24 bg-sokai-charcoal">
+    <div id="problem-solution" className="py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -75,10 +69,10 @@ const ProblemSolution = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-6 md:mb-8"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-sokai-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-sokai-dark-text mb-4">
             From <span style={{ color: '#00c6ba' }}>Problems</span> to <span className="text-sokai-neon">Solutions</span>
           </h2>
-          <p className="text-lg md:text-xl text-sokai-gray  mx-auto">
+          <p className="text-lg md:text-xl text-sokai-light-gray mx-auto">
             We identified the key challenges in youth football training and built innovative solutions that work.
           </p>
         </motion.div>
@@ -103,22 +97,22 @@ const ProblemSolution = () => {
                   key={index}
                   variants={cardVariants}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="bg-sokai-black/50 p-6 rounded-2xl border transition-all duration-300"
+                  className="bg-white p-6 rounded-2xl border transition-all duration-300 shadow-lg hover:shadow-xl"
                   style={{ 
-                    borderColor: 'rgba(0, 198, 186, 0.2)'
+                    borderColor: 'rgba(0, 198, 186, 0.3)'
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(0, 198, 186, 0.4)'}
-                  onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(0, 198, 186, 0.2)'}
+                  onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(0, 198, 186, 0.6)'}
+                  onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(0, 198, 186, 0.3)'}
                 >
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0 p-3 rounded-xl" style={{ backgroundColor: 'rgba(0, 198, 186, 0.1)' }}>
                       <IconComponent className="w-6 h-6" style={{ color: '#00c6ba' }} />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-sokai-white mb-2">
+                      <h4 className="text-lg font-semibold text-sokai-dark-text mb-2">
                         {problem.title}
                       </h4>
-                      <p className="text-sokai-gray leading-relaxed">
+                      <p className="text-sokai-light-gray leading-relaxed">
                         {problem.description}
                       </p>
                     </div>
@@ -146,17 +140,17 @@ const ProblemSolution = () => {
                   key={index}
                   variants={cardVariants}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="bg-sokai-black/50 p-6 rounded-2xl border border-sokai-neon/20 hover:border-sokai-neon/40 transition-all duration-300 hover:glow-border"
+                  className="bg-white p-6 rounded-2xl border border-sokai-neon/30 hover:border-sokai-neon/60 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0 p-3 bg-sokai-neon/10 rounded-xl">
                       <IconComponent className="w-6 h-6 text-sokai-neon" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-sokai-white mb-2">
+                      <h4 className="text-lg font-semibold text-sokai-dark-text mb-2">
                         {solution.title}
                       </h4>
-                      <p className="text-sokai-gray leading-relaxed">
+                      <p className="text-sokai-light-gray leading-relaxed">
                         {solution.description}
                       </p>
                     </div>
@@ -167,51 +161,8 @@ const ProblemSolution = () => {
           </motion.div>
         </div>
 
-        {/* How It Works Process */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-sokai-black/30 rounded-3xl p-8 md:p-12"
-        >
-          <h3 className="text-2xl md:text-3xl font-sans font-semibold text-sokai-white mb-8 text-center">
-            How It Works
-          </h3>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {processSteps.map((step, index) => {
-              const IconComponent = step.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-center group"
-                >
-                  <div className="relative mb-4">
-                    <div className="w-16 h-16 bg-sokai-neon/10 rounded-2xl flex items-center justify-center mx-auto group-hover:bg-sokai-neon/20 transition-colors duration-300">
-                      <IconComponent className="w-8 h-8 text-sokai-neon" />
-                    </div>
-                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-sokai-neon rounded-full flex items-center justify-center text-sokai-charcoal text-sm font-bold">
-                      {index + 1}
-                    </div>
-                  </div>
-                  <h4 className="text-lg font-semibold text-sokai-white mb-2">
-                    {step.label}
-                  </h4>
-                  <p className="text-sokai-gray text-sm">
-                    {step.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
       </div>
-    </section>
+    </div>
   );
 };
 
