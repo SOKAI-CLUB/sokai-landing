@@ -86,7 +86,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection('video')}
-              className="z-10 px-4 py-2 md:px-6 md:py-3 border-2 border-sokai-neon text-sokai-neon hover:bg-sokai-neon hover:text-sokai-charcoal transition-all duration-300 rounded-lg font-sans font-semibold text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-sokai-neon focus:ring-offset-2 focus:ring-offset-sokai-charcoal min-w-[140px]"
+              className="z-10 px-4 py-2 md:px-6 md:py-3 border-2 border-sokai-neon text-sokai-neon hover:bg-sokai-neon hover:text-sokai-charcoal transition-all duration-300 rounded-lg font-sans font-semibold text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-sokai-neon focus:ring-offset-2 focus:ring-offset-sokai-charcoal w-3/4 sm:w-auto sm:min-w-[140px]"
             >
               Start the Game
             </motion.button>
@@ -95,7 +95,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => window.open('https://calendly.com/makses/sokai', '_blank')}
-              className="px-4 py-2 md:px-6 md:py-3 bg-sokai-neon text-sokai-charcoal hover:bg-sokai-neon/90 transition-colors duration-300 rounded-lg font-sans font-semibold text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-sokai-neon focus:ring-offset-2 focus:ring-offset-sokai-charcoal min-w-[140px] glow-border"
+              className="px-4 py-2 md:px-6 md:py-3 bg-sokai-neon text-sokai-charcoal hover:bg-sokai-neon/90 transition-colors duration-300 rounded-lg font-sans font-semibold text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-sokai-neon focus:ring-offset-2 focus:ring-offset-sokai-charcoal w-3/4 sm:w-auto sm:min-w-[140px] glow-border"
             >
               Book a Call
             </motion.button>

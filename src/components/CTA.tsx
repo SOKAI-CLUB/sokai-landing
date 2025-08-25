@@ -101,10 +101,10 @@ const CTA = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="bg-white p-6 md:p-8 rounded-xl border border-sokai-neon/30 shadow-lg mb-12"
         >
-          <h4 className="text-xl font-semibold text-sokai-neon mb-4 text-center">Our Mission</h4>
-          <p className="text-sokai-light-gray leading-relaxed text-center">
-            To democratize elite football training through cutting-edge technology,
-            creating verifiable skill development pathways for the next generation of athletes.
+          <h2 className="text-2xl md:text-3xl font-semibold text-sokai-neon mb-4 text-center">OUR MISSION</h2>
+          <p className="text-lg md:text-xl text-sokai-light-gray leading-relaxed text-center">
+            Giving millions of <span className="text-sokai-neon">children worldwide</span> the chance to <span className="text-sokai-neon">play</span>, <span className="text-sokai-neon">train</span>, <span className="text-sokai-neon">improve</span>, and grow through technology. <br />
+            <span className="text-sokai-neon">AI</span> serving <span className="text-sokai-neon">sport</span>, sport serving life.
           </p>
         </motion.div>
 
