@@ -14,6 +14,7 @@ export default {
         'display': ['EsportGraph', 'Oxanium', 'Orbitron', 'system-ui', 'sans-serif'],
         'sans': ['var(--font-poppins)', 'Inter', 'system-ui', 'sans-serif'],
         'antonio': ['var(--font-antonio)', 'system-ui', 'sans-serif'],
+        'slussen': ['Slussen-Semibold', 'system-ui', 'sans-serif'],
       },
       colors: {
         background: 'hsl(var(--background))',

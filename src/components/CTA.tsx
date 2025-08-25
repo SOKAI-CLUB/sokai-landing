@@ -49,7 +49,7 @@ const CTA = () => {
           className="text-center mb-12 md:mb-16"
         >
           {/* Heading */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-bold text-sokai-dark-text mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-sokai-dark-text mb-6 leading-tight">
             Let's Build the Future of
             <span className="block text-sokai-neon">Youth Training</span>
           </h2>
@@ -163,15 +163,15 @@ const CTA = () => {
             <div className="mt-8 pt-8 border-t border-sokai-neon/30">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
                 <div>
-                  <div className="text-2xl font-bold text-sokai-neon mb-1">30 min</div>
+                  <div className="text-2xl stat-number text-sokai-neon mb-1">30 min</div>
                   <div className="text-sm text-sokai-light-gray">Demo Duration</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-sokai-neon mb-1">No Strings</div>
+                  <div className="text-2xl stat-number text-sokai-neon mb-1">No Strings</div>
                   <div className="text-sm text-sokai-light-gray">Attached</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-sokai-neon mb-1">Live Demo</div>
+                  <div className="text-2xl stat-number text-sokai-neon mb-1">Live Demo</div>
                   <div className="text-sm text-sokai-light-gray">App Walkthrough</div>
                 </div>
               </div>

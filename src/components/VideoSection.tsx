@@ -31,8 +31,8 @@ const VideoSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 md:mb-8"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-sokai-white mb-6">
-            See SOKAI in Action
+          <h2 className="text-3xl sm:text-4xl md:text-5xl text-sokai-white mb-6 leading-tight">
+            SEE SOKAI VIDEO
           </h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
