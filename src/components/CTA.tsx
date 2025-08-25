@@ -49,7 +49,7 @@ const CTA = () => {
           className="text-center mb-12 md:mb-16"
         >
           {/* Heading */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-sokai-dark-text mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-sokai-dark-text mb-6 leading-loose">
             Let's Build the Future of
             <span className="block text-sokai-neon">Youth Training</span>
           </h2>
@@ -102,10 +102,10 @@ const CTA = () => {
           className="bg-white p-6 md:p-8 rounded-xl border border-sokai-neon/30 shadow-lg mb-12"
         >
           <h2 className="text-2xl md:text-3xl font-semibold text-sokai-neon mb-4 text-center">OUR MISSION</h2>
-          <p className="text-lg md:text-xl text-sokai-light-gray leading-relaxed text-center">
-            Giving millions of <span className="text-sokai-neon">children worldwide</span> the chance to <span className="text-sokai-neon">play</span>, <span className="text-sokai-neon">train</span>, <span className="text-sokai-neon">improve</span>, and grow through technology. <br />
-            <span className="text-sokai-neon">AI</span> serving <span className="text-sokai-neon">sport</span>, sport serving life.
+          <p className="text-lg md:text-2xl text-sokai-light-gray text-center mb-4" style={{lineHeight: '1.8'}}>
+            Giving millions of <span className="text-sokai-neon">children worldwide</span> the chance to <span className="text-sokai-neon">play, </span><span className="text-sokai-neon">train, </span><span className="text-sokai-neon">improve, </span>and grow through technology. <span className="text-sokai-neon">AI</span> serving <span className="text-sokai-neon">sport</span>, sport serving <span className="text-sokai-neon">life</span>.
           </p>
+
         </motion.div>
 
         {/* Main CTA Card */}
