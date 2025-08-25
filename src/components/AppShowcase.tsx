@@ -42,7 +42,7 @@ const AppShowcase = () => {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-sokai-dark-text mb-6">
             Train Smarter with
-            <span className="block text-sokai-neon">AI-Powered Coaching</span>
+            <span className="block text-sokai-neon">AI-Powered Coaching (Mockup WIP incoming)</span>
           </h2>
           <p className="text-lg md:text-xl text-sokai-light-gray max-w-3xl mx-auto">
             Experience the future of football training with personalized AI coaching, gamified challenges, and blockchain-verified progress tracking.
