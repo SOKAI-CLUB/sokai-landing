@@ -68,7 +68,7 @@ const Hero = () => {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-lg sm:text-xl md:text-xl lg:text-2xl font-sans font-bold text-sokai-white leading-tight mt-8 drop-shadow-[2px_2px_0px_rgba(166,166,166,0.6)]"
+              className="text-lg sm:text-xl md:text-xl lg:text-2xl font-sans font-bold text-sokai-white leading-tight mt-8 drop-shadow-[1px_1px_0px_rgba(166,166,166,0.3)]"
             >
               <span className="block">Play, Have fun, Improve and Start the game ⚽️⚡️</span>
             </motion.h2>

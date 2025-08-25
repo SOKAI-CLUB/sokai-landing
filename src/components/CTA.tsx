@@ -163,15 +163,17 @@ const CTA = () => {
             <div className="mt-8 pt-8 border-t border-sokai-neon/30">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
                 <div>
-                  <div className="text-2xl stat-number text-sokai-neon mb-1">30 min</div>
+                  <div className="text-2xl text-sokai-neon mb-1">
+                    <span className="stat-number">30</span> <span className="slussen-black">min</span>
+                  </div>
                   <div className="text-sm text-sokai-light-gray">Demo Duration</div>
                 </div>
                 <div>
-                  <div className="text-2xl stat-number text-sokai-neon mb-1">No Strings</div>
+                  <div className="text-2xl text-sokai-neon mb-1 slussen-black">No Strings</div>
                   <div className="text-sm text-sokai-light-gray">Attached</div>
                 </div>
                 <div>
-                  <div className="text-2xl stat-number text-sokai-neon mb-1">Live Demo</div>
+                  <div className="text-2xl text-sokai-neon mb-1 slussen-black">Live Demo</div>
                   <div className="text-sm text-sokai-light-gray">App Walkthrough</div>
                 </div>
               </div>

@@ -58,6 +58,13 @@ button {
   letter-spacing: 0.02em !important;
 }
 
+/* Slussen Black for specific elements */
+.slussen-black {
+  font-family: 'Slussen-Semibold', system-ui, sans-serif !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.02em !important;
+}
+
 @layer base {
   :root {
     --background: 222 14% 6%; /* #0B0B0D */
