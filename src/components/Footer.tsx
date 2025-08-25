@@ -34,13 +34,13 @@ const Footer = () => {
     {
       name: 'YouTube',
       icon: Youtube,
-      href: 'https://youtube.com/@sokai-ai',
+      href: 'https://www.youtube.com/@Sokai_club',
       color: 'hover:text-[#FF0000]'
     },
     {
       name: 'Email',
       icon: Mail,
-      href: 'mailto:hello@sokai.ai',
+      href: 'mailto:contact@sokai.club',
       color: 'hover:text-sokai-neon'
     }
   ];

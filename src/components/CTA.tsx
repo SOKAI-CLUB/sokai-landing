@@ -190,10 +190,10 @@ const CTA = () => {
           <p className="text-sokai-light-gray text-sm">
             Prefer email? Reach out to{' '}
             <a
-              href="mailto:investors@sokai.ai"
+              href="mailto:contact@sokai.club"
               className="text-sokai-neon hover:underline transition-all duration-300"
             >
-              investors@sokai.ai
+              contact@sokai.club
             </a>
           </p>
         </motion.div>
