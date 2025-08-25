@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Twitter, Linkedin, Youtube, Mail, ArrowUp } from 'lucide-react';
+import { Linkedin, Youtube, Mail, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,12 +11,19 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Custom X logo component
+  const XLogo = () => (
+    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+  );
+
   const socialLinks = [
     {
-      name: 'X / Twitter',
-      icon: Twitter,
+      name: 'X',
+      icon: XLogo,
       href: 'https://x.com/Sokai_Fc',
-      color: 'hover:text-[#1DA1F2]'
+      color: 'hover:text-white'
     },
     {
       name: 'LinkedIn',
@@ -27,7 +34,7 @@ const Footer = () => {
     {
       name: 'YouTube',
       icon: Youtube,
-      href: 'https://youtube.com/@sokai-ai', // TODO: Replace with actual social links
+      href: 'https://youtube.com/@sokai-ai',
       color: 'hover:text-[#FF0000]'
     },
     {
@@ -52,23 +59,12 @@ const Footer = () => {
           >
             {/* Logo */}
             <div>
-              <h3 className="text-2xl md:text-3xl font-sans font-bold text-sokai-white mb-4">
+              <h3 className="text-3xl md:text-4xl font-display font-bold text-sokai-white mb-4 leading-none tracking-wider drop-shadow-[4px_4px_0px_rgba(166,166,166,0.8)]">
                 SOKAI
               </h3>
-              <p className="text-sokai-gray leading-relaxed max-w-md">
-                Transforming youth football training through AI-powered analysis and blockchain-certified progress tracking.
-                Making quality coaching accessible to every young athlete, anywhere.
-              </p>
+              
             </div>
 
-            {/* Mission Statement */}
-            <div className="bg-sokai-black/30 p-6 rounded-xl border border-sokai-neon/20">
-              <h4 className="text-lg font-semibold text-sokai-neon mb-2">Our Mission</h4>
-              <p className="text-sokai-gray text-sm leading-relaxed">
-                To democratize elite football training through cutting-edge technology,
-                creating verifiable skill development pathways for the next generation of athletes.
-              </p>
-            </div>
 
             {/* Copyright */}
             <div className="pt-4 border-t border-sokai-gray/20">
@@ -91,10 +87,7 @@ const Footer = () => {
           >
             {/* Social Links */}
             <div>
-              <h4 className="text-lg font-semibold text-sokai-white mb-6">
-                Connect With Us
-              </h4>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="flex justify-center gap-4">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
                   return (
@@ -103,66 +96,24 @@ const Footer = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className={`
-                        flex items-center space-x-3 p-4 bg-sokai-black/30 rounded-xl
-                        border border-sokai-gray/20 hover:border-sokai-neon/40
-                        transition-all duration-300 group hover:glow-border
+                        w-12 h-12 rounded-full border-2 border-sokai-neon
+                        flex items-center justify-center
+                        transition-all duration-300 group
+                        hover:bg-sokai-neon hover:border-sokai-neon
                         ${social.color}
                       `}
                     >
-                      <IconComponent className="w-5 h-5 text-sokai-gray group-hover:text-current transition-colors duration-300" />
-                      <span className="text-sokai-gray group-hover:text-sokai-white transition-colors duration-300 text-sm font-medium">
-                        {social.name}
-                      </span>
+                      <IconComponent className="w-5 h-5 text-sokai-white group-hover:text-sokai-charcoal transition-colors duration-300" />
                     </motion.a>
                   );
                 })}
               </div>
             </div>
 
-            {/* Quick Links */}
-            <div>
-              <h4 className="text-lg font-semibold text-sokai-white mb-4">
-                Quick Access
-              </h4>
-              <div className="space-y-3">
-                <button
-                  onClick={() => window.open('[INVESTOR_DECK_URL]', '_blank')}
-                  className="block text-sokai-gray hover:text-sokai-neon transition-colors duration-300 text-sm"
-                >
-                  → Investor Pitch Deck
-                </button>
-                <button
-                  onClick={() => window.open('https://calendly.com/makses/sokai', '_blank')}
-                  className="block text-sokai-gray hover:text-sokai-neon transition-colors duration-300 text-sm"
-                >
-                  → Schedule Demo Call
-                </button>
-                <a
-                  href="mailto:investors@sokai.ai"
-                  className="block text-sokai-gray hover:text-sokai-neon transition-colors duration-300 text-sm"
-                >
-                  → Contact Investors Team
-                </a>
-              </div>
-            </div>
 
-            {/* Technology Stack */}
-            <div className="bg-sokai-black/30 p-6 rounded-xl border border-sokai-neon/20">
-              <h4 className="text-lg font-semibold text-sokai-neon mb-3">Technology</h4>
-              <div className="flex flex-wrap gap-2">
-                {['AI/ML', 'Blockchain', 'Computer Vision', 'Mobile-First'].map((tech, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1 bg-sokai-neon/10 text-sokai-neon text-xs rounded-full border border-sokai-neon/20"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
           </motion.div>
         </div>
 
@@ -172,14 +123,8 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 pt-8 border-t border-sokai-gray/20 flex flex-col sm:flex-row justify-between items-center"
+          className="mt-12 pt-8 border-t border-sokai-gray/20 flex justify-center items-center"
         >
-          <div className="text-center sm:text-left mb-4 sm:mb-0">
-            <p className="text-sokai-gray text-sm">
-              Made with ⚡ for the future of youth sports
-            </p>
-          </div>
-
           {/* Back to Top Button */}
           <motion.button
             onClick={scrollToTop}

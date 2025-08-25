@@ -18,9 +18,7 @@ export default function Home() {
       <Hero />
 
       {/* Trusted By Section - Light */}
-      <section className="bg-sokai-light">
-        <TrustedBy />
-      </section>
+
 
       {/* Video Section - Dark */}
       <section className="bg-sokai-charcoal">
@@ -28,22 +26,15 @@ export default function Home() {
       </section>
 
       {/* App Showcase Section - Light */}
-      <section className="bg-sokai-light">
-        <AppShowcase />
-      </section>
+
 
       {/* Stats Section - Dark */}
-      <section className="bg-sokai-charcoal">
-        <StatsSection />
-      </section>
 
       {/* Problem → Solution Section - Light */}
-      <section className="bg-sokai-light">
-        <ProblemSolution />
-      </section>
 
-      {/* CTA Section - Dark */}
-      <section className="bg-sokai-charcoal">
+
+      {/* CTA Section - Light */}
+      <section className="bg-sokai-light">
         <CTA />
       </section>
 

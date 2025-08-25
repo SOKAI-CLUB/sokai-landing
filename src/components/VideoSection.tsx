@@ -46,7 +46,7 @@ const VideoSection = () => {
         >
           {!isPlaying ? (
             /* Video Thumbnail with Preview */
-            <div className="relative aspect-[16/8] bg-gradient-to-br from-sokai-charcoal to-sokai-black">
+            <div className="relative aspect-[16/9] bg-gradient-to-br from-sokai-charcoal to-sokai-black">
               {/* Video Preview Frame */}
               <video 
                 src="/sokaidemo.mp4"
@@ -94,7 +94,7 @@ const VideoSection = () => {
             </div>
           ) : (
             /* Actual Video Player */
-            <div className="relative aspect-[16/8] bg-sokai-charcoal">
+            <div className="relative aspect-[16/9] bg-sokai-charcoal">
               <video 
                 src="/sokaidemo.mp4"
                 controls

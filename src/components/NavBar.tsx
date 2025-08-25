@@ -44,12 +44,7 @@ const Navbar = () => {
             >
               Video
             </button>
-            <button
-              onClick={() => scrollToSection('problem-solution')}
-              className="text-sokai-gray hover:text-sokai-neon transition-colors duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-sokai-neon focus:ring-offset-2 focus:ring-offset-sokai-charcoal rounded-md px-3 py-2"
-            >
-              Problem → Solution
-            </button>
+            
             <button
               onClick={() => scrollToSection('contact')}
               className="text-sokai-gray hover:text-sokai-neon transition-colors duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-sokai-neon focus:ring-offset-2 focus:ring-offset-sokai-charcoal rounded-md px-3 py-2"

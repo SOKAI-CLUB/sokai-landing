@@ -49,13 +49,13 @@ const CTA = () => {
           className="text-center mb-12 md:mb-16"
         >
           {/* Heading */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-bold text-sokai-white mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-bold text-sokai-dark-text mb-6 leading-tight">
             Let's Build the Future of
             <span className="block text-sokai-neon">Youth Training</span>
           </h2>
 
           {/* Subtext */}
-          <p className="text-lg md:text-xl text-sokai-gray max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-lg md:text-xl text-sokai-light-gray max-w-2xl mx-auto mb-8 leading-relaxed">
             Looking for strategic investors & partners to scale AI-powered training globally.
           </p>
         </motion.div>
@@ -77,20 +77,35 @@ const CTA = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-sokai-charcoal/50 p-6 rounded-xl border border-sokai-neon/20 hover:border-sokai-neon/40 transition-all duration-300 text-center group hover:glow-border"
+                className="bg-white p-6 rounded-xl border border-sokai-neon/30 hover:border-sokai-neon/60 transition-all duration-300 text-center group shadow-lg hover:shadow-xl"
               >
                 <div className="w-12 h-12 bg-sokai-neon/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-sokai-neon/20 transition-colors duration-300">
                   <IconComponent className="w-6 h-6 text-sokai-neon" />
                 </div>
-                <h3 className="text-lg font-semibold text-sokai-white mb-2">
+                <h3 className="text-lg font-semibold text-sokai-dark-text mb-2">
                   {benefit.title}
                 </h3>
-                <p className="text-sokai-gray text-sm leading-relaxed">
+                <p className="text-sokai-light-gray text-sm leading-relaxed">
                   {benefit.description}
                 </p>
               </motion.div>
             );
           })}
+        </motion.div>
+
+        {/* Our Mission */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="bg-white p-6 md:p-8 rounded-xl border border-sokai-neon/30 shadow-lg mb-12"
+        >
+          <h4 className="text-xl font-semibold text-sokai-neon mb-4 text-center">Our Mission</h4>
+          <p className="text-sokai-light-gray leading-relaxed text-center">
+            To democratize elite football training through cutting-edge technology,
+            creating verifiable skill development pathways for the next generation of athletes.
+          </p>
         </motion.div>
 
         {/* Main CTA Card */}
@@ -99,7 +114,7 @@ const CTA = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="bg-gradient-to-br from-sokai-charcoal to-sokai-black p-8 md:p-12 rounded-3xl glow-border-intense relative overflow-hidden"
+          className="bg-gradient-to-br from-white to-gray-50 p-8 md:p-12 rounded-3xl border border-sokai-neon/30 shadow-2xl relative overflow-hidden"
         >
           {/* Decorative Grid Pattern */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(124,255,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(124,255,0,0.03)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
@@ -117,15 +132,15 @@ const CTA = () => {
             </motion.div>
 
             {/* CTA Text */}
-            <h3 className="text-2xl md:text-3xl font-sans font-bold text-sokai-white mb-4">
+            <h3 className="text-2xl md:text-3xl font-sans font-bold text-sokai-dark-text mb-4">
               Ready to Transform Youth Sports?
             </h3>
-            <p className="text-lg text-sokai-gray mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-sokai-light-gray mb-8 max-w-2xl mx-auto">
               Schedule a 30-minute demo to see how SOKAI is revolutionizing football training with AI and blockchain technology.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            {/* CTA Button */}
+            <div className="flex justify-center">
               <motion.button
                 onClick={handleCalendlyClick}
                 whileHover={{ scale: 1.05 }}
@@ -142,31 +157,22 @@ const CTA = () => {
                   </>
                 )}
               </motion.button>
-
-              <motion.button
-                onClick={() => window.open('[INVESTOR_DECK_URL]', '_blank')}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group px-8 py-4 border-2 border-sokai-neon text-sokai-neon hover:bg-sokai-neon hover:text-sokai-charcoal transition-all duration-300 rounded-xl font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-sokai-neon focus:ring-offset-2 focus:ring-offset-sokai-charcoal min-w-[200px]"
-              >
-                Download Deck
-              </motion.button>
             </div>
 
             {/* Trust Indicators */}
-            <div className="mt-8 pt-8 border-t border-sokai-neon/20">
+            <div className="mt-8 pt-8 border-t border-sokai-neon/30">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
                 <div>
                   <div className="text-2xl font-bold text-sokai-neon mb-1">30 min</div>
-                  <div className="text-sm text-sokai-gray">Demo Duration</div>
+                  <div className="text-sm text-sokai-light-gray">Demo Duration</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-sokai-neon mb-1">No Strings</div>
-                  <div className="text-sm text-sokai-gray">Attached</div>
+                  <div className="text-sm text-sokai-light-gray">Attached</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-sokai-neon mb-1">Live Demo</div>
-                  <div className="text-sm text-sokai-gray">App Walkthrough</div>
+                  <div className="text-sm text-sokai-light-gray">App Walkthrough</div>
                 </div>
               </div>
             </div>
@@ -181,7 +187,7 @@ const CTA = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-8"
         >
-          <p className="text-sokai-gray text-sm">
+          <p className="text-sokai-light-gray text-sm">
             Prefer email? Reach out to{' '}
             <a
               href="mailto:investors@sokai.ai"

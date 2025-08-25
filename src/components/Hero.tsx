@@ -94,10 +94,10 @@ const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.open('[INVESTOR_DECK_URL]', '_blank')}
+              onClick={() => window.open('https://calendly.com/makses/sokai', '_blank')}
               className="px-4 py-2 md:px-6 md:py-3 bg-sokai-neon text-sokai-charcoal hover:bg-sokai-neon/90 transition-colors duration-300 rounded-lg font-sans font-semibold text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-sokai-neon focus:ring-offset-2 focus:ring-offset-sokai-charcoal min-w-[140px] glow-border"
             >
-              Investor Deck
+              Book a Call
             </motion.button>
           </motion.div>
 
