@@ -61,7 +61,7 @@ export default {
         'sokai': {
           'charcoal': '#0B0B0D',
           'black': '#111315',
-          'neon': '#7CFF00',
+          'neon': '#a7ff10',
           'gray': '#A6A6A6',
           'white': '#FFFFFF',
           'light': '#FAFAFA',
