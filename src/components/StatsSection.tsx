@@ -44,7 +44,7 @@ const StatsSection = () => {
               className="text-center group"
             >
               <div className="bg-sokai-black/50 p-6 md:p-8 rounded-2xl border border-sokai-neon/20 hover:border-sokai-neon/40 transition-all duration-300 hover:glow-border">
-                <div className="text-3xl md:text-4xl lg:text-5xl font-sans font-bold text-sokai-neon mb-3">
+                <div className="text-3xl md:text-4xl lg:text-5xl stat-number text-sokai-neon mb-3">
                   {stat.value}
                 </div>
                 <div className="text-sokai-gray text-sm md:text-base font-sans font-medium">

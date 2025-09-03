@@ -14,6 +14,7 @@ export default {
         'display': ['EsportGraph', 'Oxanium', 'Orbitron', 'system-ui', 'sans-serif'],
         'sans': ['var(--font-poppins)', 'Inter', 'system-ui', 'sans-serif'],
         'antonio': ['var(--font-antonio)', 'system-ui', 'sans-serif'],
+        'slussen': ['Slussen-Semibold', 'system-ui', 'sans-serif'],
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -60,7 +61,7 @@ export default {
         'sokai': {
           'charcoal': '#0B0B0D',
           'black': '#111315',
-          'neon': '#7CFF00',
+          'neon': '#a7ff10',
           'gray': '#A6A6A6',
           'white': '#FFFFFF',
           'light': '#FAFAFA',

@@ -1,14 +1,23 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 
 const VideoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePlayClick = () => {
     setIsPlaying(true);
+    // Démarrer la lecture de la vidéo après un court délai pour permettre le rendu
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.play().catch((error) => {
+          console.error('Error playing video:', error);
+        });
+      }
+    }, 100);
   };
 
   return (
@@ -22,8 +31,8 @@ const VideoSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 md:mb-8"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-sokai-white mb-6">
-            See SOKAI in Action
+          <h2 className="text-3xl sm:text-4xl md:text-5xl text-sokai-white mb-6 leading-tight">
+            SEE SOKAI VIDEO
           </h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -96,9 +105,9 @@ const VideoSection = () => {
             /* Actual Video Player */
             <div className="relative aspect-[16/9] bg-sokai-charcoal">
               <video 
+                ref={videoRef}
                 src="/sokaidemo.mp4"
                 controls
-                autoPlay
                 className="w-full h-full object-cover"
                 onLoadStart={() => console.log('Video loading started')}
                 onError={(e) => console.error('Video error:', e)}

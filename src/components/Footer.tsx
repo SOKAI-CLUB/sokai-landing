@@ -34,13 +34,13 @@ const Footer = () => {
     {
       name: 'YouTube',
       icon: Youtube,
-      href: 'https://youtube.com/@sokai-ai',
+      href: 'https://www.youtube.com/@Sokai_club',
       color: 'hover:text-[#FF0000]'
     },
     {
       name: 'Email',
       icon: Mail,
-      href: 'mailto:hello@sokai.ai',
+      href: 'mailto:contact@sokai.club',
       color: 'hover:text-sokai-neon'
     }
   ];
@@ -59,7 +59,7 @@ const Footer = () => {
           >
             {/* Logo */}
             <div>
-              <h3 className="text-3xl md:text-4xl font-display font-bold text-sokai-white mb-4 leading-none tracking-wider drop-shadow-[4px_4px_0px_rgba(166,166,166,0.8)]">
+              <h3 className="text-3xl md:text-4xl text-sokai-white mb-4 leading-none tracking-wider drop-shadow-[4px_4px_0px_rgba(166,166,166,0.8)]" style={{fontFamily: 'EsportGraph, Oxanium, Orbitron, system-ui, sans-serif !important', fontWeight: 'bold !important'}}>
                 SOKAI
               </h3>
               

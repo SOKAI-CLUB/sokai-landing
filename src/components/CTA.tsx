@@ -49,13 +49,13 @@ const CTA = () => {
           className="text-center mb-12 md:mb-16"
         >
           {/* Heading */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-bold text-gray-900 mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-sokai-dark-text mb-6 leading-loose">
             Let's Build the Future of
             <span className="block text-sokai-neon">Youth Training</span>
           </h2>
 
           {/* Subtext */}
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-lg md:text-xl text-sokai-light-gray max-w-2xl mx-auto mb-8 leading-relaxed">
             Looking for strategic investors & partners to scale AI-powered training globally.
           </p>
         </motion.div>
@@ -82,10 +82,10 @@ const CTA = () => {
                 <div className="w-12 h-12 bg-sokai-neon/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-sokai-neon/20 transition-colors duration-300">
                   <IconComponent className="w-6 h-6 text-sokai-neon" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-sokai-dark-text mb-2">
                   {benefit.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-sokai-light-gray text-sm leading-relaxed">
                   {benefit.description}
                 </p>
               </motion.div>
@@ -101,11 +101,11 @@ const CTA = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="bg-white p-6 md:p-8 rounded-xl border border-sokai-neon/30 shadow-lg mb-12"
         >
-          <h4 className="text-xl font-semibold text-sokai-neon mb-4 text-center">Our Mission</h4>
-          <p className="text-gray-600 leading-relaxed text-center">
-            To democratize elite football training through cutting-edge technology,
-            creating verifiable skill development pathways for the next generation of athletes.
+          <h2 className="text-2xl md:text-3xl font-semibold text-sokai-neon mb-4 text-center">OUR MISSION</h2>
+          <p className="text-lg md:text-2xl text-sokai-light-gray text-center mb-4" style={{lineHeight: '1.8'}}>
+            Giving millions of <span className="text-sokai-neon">children worldwide</span> the chance to <span className="text-sokai-neon">play, </span><span className="text-sokai-neon">train, </span><span className="text-sokai-neon">improve, </span>and grow through technology. <span className="text-sokai-neon">AI</span> serving <span className="text-sokai-neon">sport</span>, sport serving <span className="text-sokai-neon">life</span>.
           </p>
+
         </motion.div>
 
         {/* Main CTA Card */}
@@ -132,10 +132,10 @@ const CTA = () => {
             </motion.div>
 
             {/* CTA Text */}
-            <h3 className="text-2xl md:text-3xl font-sans font-bold text-gray-900 mb-4">
+            <h3 className="text-2xl md:text-3xl font-sans font-bold text-sokai-dark-text mb-4">
               Ready to Transform Youth Sports?
             </h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-sokai-light-gray mb-8 max-w-2xl mx-auto">
               Schedule a 30-minute demo to see how SOKAI is revolutionizing football training with AI and blockchain technology.
             </p>
 
@@ -163,16 +163,18 @@ const CTA = () => {
             <div className="mt-8 pt-8 border-t border-sokai-neon/30">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
                 <div>
-                  <div className="text-2xl font-bold text-sokai-neon mb-1">30 min</div>
-                  <div className="text-sm text-gray-600">Demo Duration</div>
+                  <div className="text-2xl text-sokai-neon mb-1">
+                    <span className="stat-number">30</span> <span className="slussen-black">min</span>
+                  </div>
+                  <div className="text-sm text-sokai-light-gray">Demo Duration</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-sokai-neon mb-1">No Strings</div>
-                  <div className="text-sm text-gray-600">Attached</div>
+                  <div className="text-2xl text-sokai-neon mb-1 slussen-black">No Strings</div>
+                  <div className="text-sm text-sokai-light-gray">Attached</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-sokai-neon mb-1">Live Demo</div>
-                  <div className="text-sm text-gray-600">App Walkthrough</div>
+                  <div className="text-2xl text-sokai-neon mb-1 slussen-black">Live Demo</div>
+                  <div className="text-sm text-sokai-light-gray">App Walkthrough</div>
                 </div>
               </div>
             </div>
@@ -187,13 +189,13 @@ const CTA = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-8"
         >
-          <p className="text-gray-600 text-sm">
+          <p className="text-sokai-light-gray text-sm">
             Prefer email? Reach out to{' '}
             <a
-              href="mailto:investors@sokai.ai"
+              href="mailto:contact@sokai.club"
               className="text-sokai-neon hover:underline transition-all duration-300"
             >
-              investors@sokai.ai
+              contact@sokai.club
             </a>
           </p>
         </motion.div>
