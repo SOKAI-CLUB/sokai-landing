@@ -5,6 +5,7 @@ import VideoSection from '@/components/VideoSection';
 import AppShowcase from '@/components/AppShowcase';
 import StatsSection from '@/components/StatsSection';
 import ProblemSolution from '@/components/ProblemSolution';
+import CTA from '@/components/CTA';
 import CtaSignupSection from '@/components/CtaSignupSection';
 import Footer from '@/components/Footer';
 
@@ -33,7 +34,12 @@ export default function Home() {
       {/* Problem → Solution Section - Light */}
 
 
-      {/* CTA Section - Dark */}
+      {/* CTA Section - Light */}
+      <section className="bg-sokai-light">
+        <CTA />
+      </section>
+
+      {/* Waitlist Section - Dark */}
       <CtaSignupSection
         locale="en"
         calendlyUrl="https://calendly.com/makses/sokai"

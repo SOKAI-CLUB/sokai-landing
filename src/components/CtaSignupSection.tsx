@@ -7,7 +7,17 @@ import { Mail, User, Check, ArrowRight, Calendar, ExternalLink, Twitter, Instagr
 type Props = {
   title?: string;
   subtitle?: string;
-  onSubmit?: (data: { email: string; name?: string; consent: boolean; source: 'landing' }) => Promise<void> | void;
+  onSubmit?: (data: { 
+    email: string; 
+    name?: string; 
+    consent: boolean; 
+    source: 'landing';
+    socialLinks?: {
+      linkedin?: string;
+      instagram?: string;
+      twitter?: string;
+    };
+  }) => Promise<void> | void;
   socialLinks?: { x?: string; instagram?: string; linkedin?: string; youtube?: string };
   locale?: 'fr' | 'en';
   calendlyUrl?: string;
@@ -32,6 +42,14 @@ const copy = {
     errorGeneric: "Une erreur s'est produite. Réessaie dans quelques instants.",
     emailError: "Veuillez entrer une adresse email valide",
     consentError: "Vous devez accepter de recevoir nos emails",
+    socialOptional: "Réseaux sociaux (optionnel)",
+    socialBonus: "🎁 Bonus : Partage tes profils pour débloquer des récompenses exclusives !",
+    linkedinLabel: "Profil LinkedIn",
+    instagramLabel: "Profil Instagram", 
+    twitterLabel: "Profil Twitter/X",
+    linkedinPlaceholder: "https://linkedin.com/in/tonprofil",
+    instagramPlaceholder: "https://instagram.com/tonprofil",
+    twitterPlaceholder: "https://x.com/tonprofil",
     valueBullets: [
       "Accès anticipé à l'app",
       "Invitations bêta exclusives",
@@ -55,6 +73,14 @@ const copy = {
     errorGeneric: "An error occurred. Please try again in a few moments.",
     emailError: "Please enter a valid email address",
     consentError: "You must agree to receive our emails",
+    socialOptional: "Social media (optional)",
+    socialBonus: "🎁 Bonus: Share your profiles to unlock exclusive rewards!",
+    linkedinLabel: "LinkedIn Profile",
+    instagramLabel: "Instagram Profile",
+    twitterLabel: "Twitter/X Profile", 
+    linkedinPlaceholder: "https://linkedin.com/in/yourprofile",
+    instagramPlaceholder: "https://instagram.com/yourprofile",
+    twitterPlaceholder: "https://x.com/yourprofile",
     valueBullets: [
       "Early app access",
       "Exclusive beta invites",
@@ -77,7 +103,12 @@ export default function CtaSignupSection({
   const [formState, setFormState] = useState({
     email: '',
     name: '',
-    consent: false
+    consent: false,
+    socialLinks: {
+      linkedin: '',
+      instagram: '', 
+      twitter: ''
+    }
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -114,21 +145,29 @@ export default function CtaSignupSection({
     setSubmitError('');
     
     try {
+      const socialLinksData = {
+        linkedin: formState.socialLinks.linkedin.trim() || undefined,
+        instagram: formState.socialLinks.instagram.trim() || undefined,  
+        twitter: formState.socialLinks.twitter.trim() || undefined
+      };
+
       const submitData = {
         email: formState.email.trim(),
         name: formState.name.trim() || undefined,
         consent: formState.consent,
-        source: 'landing' as const
+        source: 'landing' as const,
+        socialLinks: Object.values(socialLinksData).some(link => link) ? socialLinksData : undefined
       };
 
       if (onSubmit) {
         await onSubmit(submitData);
       } else {
         // TODO: Wire to Supabase
-        // 1. Create profiles_waitlist table with columns: id, email, name, consent, source, created_at
+        // 1. Create profiles_waitlist table with columns: id, email, name, consent, source, linkedin_url, instagram_url, twitter_url, created_at
         // 2. Call API route: await fetch('/api/waitlist', { method: 'POST', body: JSON.stringify(submitData) })
         // 3. API route should insert into Supabase: supabase.from('profiles_waitlist').insert(submitData)
         // 4. Optionally capture UTM params from URL and store them as well
+        // 5. Bonus system: users with social links get additional rewards/points in database
         
         // Simulate API call for now
         await new Promise(resolve => setTimeout(resolve, 800));
@@ -143,8 +182,15 @@ export default function CtaSignupSection({
     }
   };
 
-  const handleInputChange = (field: string, value: string | boolean) => {
-    setFormState(prev => ({ ...prev, [field]: value }));
+  const handleInputChange = (field: string, value: string | boolean, socialField?: string) => {
+    if (socialField) {
+      setFormState(prev => ({ 
+        ...prev, 
+        socialLinks: { ...prev.socialLinks, [socialField]: value as string }
+      }));
+    } else {
+      setFormState(prev => ({ ...prev, [field]: value }));
+    }
     // Clear field error on change
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
@@ -173,9 +219,9 @@ export default function CtaSignupSection({
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-sokai-neon/10 rounded-full blur-3xl" />
       
       <div className="relative max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="max-w-4xl mx-auto">
           {/* Main content */}
-          <div className="max-w-2xl mx-auto lg:mx-0">
+          <div>
             <AnimatePresence mode="wait">
               {!isSuccess ? (
                 <motion.div
@@ -186,13 +232,38 @@ export default function CtaSignupSection({
                   transition={{ duration: 0.3 }}
                 >
                   {/* Header */}
-                  <div className="text-center lg:text-left mb-8">
+                  <div className="text-center mb-8">
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 font-display">
                       {title || t.title}
                     </h2>
-                    <p className="text-lg sm:text-xl text-sokai-gray max-w-lg">
+                    <p className="text-lg sm:text-xl text-sokai-gray max-w-2xl mx-auto">
                       {subtitle || t.subtitle}
                     </p>
+                  </div>
+
+                  {/* Value propositions - Now visible on all devices */}
+                  <div className="mb-8">
+                    <div className="bg-sokai-black/30 rounded-xl p-6 border border-sokai-gray/20">
+                      <h3 className="text-lg font-semibold text-white mb-6 text-center">
+                        {locale === 'fr' ? 'Ce qui t\'attend :' : 'What awaits you:'}
+                      </h3>
+                      <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        {t.valueBullets.map((bullet, index) => (
+                          <motion.li
+                            key={index}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 + 0.3 }}
+                            className="flex flex-col sm:flex-row items-center sm:items-center gap-3 text-sokai-gray text-center sm:text-left"
+                          >
+                            <div className="flex-shrink-0 w-6 h-6 bg-sokai-neon/20 rounded-full flex items-center justify-center">
+                              <CheckCircle2 className="h-4 w-4 text-sokai-neon" />
+                            </div>
+                            <span className="text-sm">{bullet}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
                   {/* Form */}
@@ -273,6 +344,74 @@ export default function CtaSignupSection({
                           {errors.consent}
                         </p>
                       )}
+                    </div>
+
+                    {/* Social Links Section */}
+                    <div className="border-t border-sokai-gray/20 pt-6">
+                      <h3 className="text-lg font-medium text-white mb-2">{t.socialOptional}</h3>
+                      <p className="text-sm text-sokai-neon mb-4">{t.socialBonus}</p>
+                      
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        {/* LinkedIn */}
+                        <div>
+                          <label htmlFor="linkedin" className="block text-sm font-medium text-white mb-2">
+                            {t.linkedinLabel}
+                          </label>
+                          <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <Linkedin className="h-5 w-5 text-sokai-gray" />
+                            </div>
+                            <input
+                              type="url"
+                              id="linkedin"
+                              value={formState.socialLinks.linkedin}
+                              onChange={(e) => handleInputChange('socialLinks', e.target.value, 'linkedin')}
+                              placeholder={t.linkedinPlaceholder}
+                              className="block w-full pl-10 pr-3 py-3 border border-sokai-gray/30 rounded-lg bg-sokai-black/50 text-white placeholder-sokai-gray focus:outline-none focus:ring-2 focus:ring-sokai-neon focus:border-transparent transition-colors"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Instagram */}
+                        <div>
+                          <label htmlFor="instagram" className="block text-sm font-medium text-white mb-2">
+                            {t.instagramLabel}
+                          </label>
+                          <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <Instagram className="h-5 w-5 text-sokai-gray" />
+                            </div>
+                            <input
+                              type="url"
+                              id="instagram"
+                              value={formState.socialLinks.instagram}
+                              onChange={(e) => handleInputChange('socialLinks', e.target.value, 'instagram')}
+                              placeholder={t.instagramPlaceholder}
+                              className="block w-full pl-10 pr-3 py-3 border border-sokai-gray/30 rounded-lg bg-sokai-black/50 text-white placeholder-sokai-gray focus:outline-none focus:ring-2 focus:ring-sokai-neon focus:border-transparent transition-colors"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Twitter */}
+                        <div className="lg:col-span-2">
+                          <label htmlFor="twitter" className="block text-sm font-medium text-white mb-2">
+                            {t.twitterLabel}
+                          </label>
+                          <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <Twitter className="h-5 w-5 text-sokai-gray" />
+                            </div>
+                            <input
+                              type="url"
+                              id="twitter"
+                              value={formState.socialLinks.twitter}
+                              onChange={(e) => handleInputChange('socialLinks', e.target.value, 'twitter')}
+                              placeholder={t.twitterPlaceholder}
+                              className="block w-full pl-10 pr-3 py-3 border border-sokai-gray/30 rounded-lg bg-sokai-black/50 text-white placeholder-sokai-gray focus:outline-none focus:ring-2 focus:ring-sokai-neon focus:border-transparent transition-colors"
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Submit error */}
@@ -368,31 +507,6 @@ export default function CtaSignupSection({
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
-
-          {/* Value propositions (desktop only) */}
-          <div className="hidden lg:block">
-            <div className="max-w-md">
-              <h3 className="text-xl font-semibold text-white mb-6">
-                {locale === 'fr' ? 'Ce qui t\'attend :' : 'What awaits you:'}
-              </h3>
-              <ul className="space-y-4">
-                {t.valueBullets.map((bullet, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 + 0.3 }}
-                    className="flex items-center gap-3 text-sokai-gray"
-                  >
-                    <div className="flex-shrink-0 w-6 h-6 bg-sokai-neon/20 rounded-full flex items-center justify-center">
-                      <CheckCircle2 className="h-4 w-4 text-sokai-neon" />
-                    </div>
-                    <span>{bullet}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </div>
