@@ -5,13 +5,6 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const Hero = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section className="relative min-h-screen flex items-end justify-center overflow-hidden pb-20">
       {/* Background Image */}
@@ -85,7 +78,7 @@ const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection('video')}
+              onClick={() => window.open('https://app.sokai.club/', '_blank')}
               className="z-10 px-4 py-2 md:px-6 md:py-3 border-2 border-sokai-neon text-sokai-neon hover:bg-sokai-neon hover:text-sokai-charcoal transition-all duration-300 rounded-lg font-sans font-semibold text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-sokai-neon focus:ring-offset-2 focus:ring-offset-sokai-charcoal w-3/4 sm:w-auto sm:min-w-[140px]"
             >
               Start the Game
