@@ -7,7 +7,7 @@ import { Camera, Brain, Shield, Award, Smartphone, Zap } from 'lucide-react';
 const AppShowcase = () => {
   const features = [
     {
-      title: "AI-Powered Movement Analysis",
+      title: "Camera-Based Movement Analysis",
       description: "Our advanced computer vision analyzes your technique in real-time, providing instant feedback on ball control, passing accuracy, and movement patterns. Just like having a professional coach in your pocket.",
       icon: Brain,
       image: "/app-mockup-1.png", // Placeholder - replace with actual mockup
@@ -21,8 +21,8 @@ const AppShowcase = () => {
       alignment: "right"
     },
     {
-      title: "Blockchain-Verified Progress",
-      description: "Every training session is recorded and verified on the blockchain, creating an immutable record of your improvement. Build a trusted portfolio of your football development that scouts and academies can verify.",
+      title: "Verified Progress",
+      description: "Every training session contributes to a clear record of improvement. Build a trusted portfolio of your football development that coaches and academies can review.",
       icon: Shield,
       image: "/profile_badge.png",
       alignment: "left"
@@ -42,10 +42,10 @@ const AppShowcase = () => {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-sokai-dark-text mb-6">
             Train Smarter with
-            <span className="block text-sokai-neon">AI-Powered Coaching</span>
+            <span className="block text-sokai-neon">Camera-Powered Coaching</span>
           </h2>
           <p className="text-lg md:text-xl text-sokai-light-gray max-w-3xl mx-auto">
-            Experience the future of football training with personalized AI coaching, gamified challenges, and blockchain-verified progress tracking.
+            Experience football training with automated tracking, gamified challenges, and measurable progress.
           </p>
         </motion.div>
 
@@ -101,7 +101,7 @@ const AppShowcase = () => {
                     transition={{ duration: 0.3 }}
                     className="relative z-10"
                   >
-                    {feature.title === "Blockchain-Verified Progress" ? (
+                    {feature.title === "Verified Progress" ? (
                       /* iPhone Frame built around the profile badge image */
                       <div className="relative mx-auto w-56 md:w-64">
                         {/* Phone Shadow */}

@@ -56,7 +56,7 @@ const CTA = () => {
 
           {/* Subtext */}
           <p className="text-lg md:text-xl text-sokai-light-gray max-w-2xl mx-auto mb-8 leading-relaxed">
-            Looking for strategic investors & partners to scale AI-powered training globally.
+            Looking for strategic partners to scale accessible football training globally.
           </p>
         </motion.div>
 
@@ -103,7 +103,7 @@ const CTA = () => {
         >
           <h2 className="text-2xl md:text-3xl font-semibold text-sokai-neon mb-4 text-center">OUR MISSION</h2>
           <p className="text-lg md:text-2xl text-sokai-light-gray text-center mb-4" style={{lineHeight: '1.8'}}>
-            Giving millions of <span className="text-sokai-neon">children worldwide</span> the chance to <span className="text-sokai-neon">play, </span><span className="text-sokai-neon">train, </span><span className="text-sokai-neon">improve, </span>and grow through technology. <span className="text-sokai-neon">AI</span> serving <span className="text-sokai-neon">sport</span>, sport serving <span className="text-sokai-neon">life</span>.
+            Giving millions of <span className="text-sokai-neon">children worldwide</span> the chance to <span className="text-sokai-neon">play, </span><span className="text-sokai-neon">train, </span><span className="text-sokai-neon">improve, </span>and grow through technology. Technology serving <span className="text-sokai-neon">sport</span>, sport serving <span className="text-sokai-neon">life</span>.
           </p>
 
         </motion.div>
@@ -136,7 +136,7 @@ const CTA = () => {
               Ready to Transform Youth Sports?
             </h3>
             <p className="text-lg text-sokai-light-gray mb-8 max-w-2xl mx-auto">
-              Schedule a 30-minute demo to see how SOKAI is revolutionizing football training with AI and blockchain technology.
+              Schedule a 30-minute demo to see how SOKAI makes football training measurable and motivating.
             </p>
 
             {/* CTA Button */}

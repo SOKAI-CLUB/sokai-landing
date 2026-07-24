@@ -26,7 +26,7 @@ const ProblemSolution = () => {
   const solutions = [
     {
       icon: Gamepad2,
-      title: 'Gamified AI drills that kids love',
+      title: 'Gamified drills that kids love',
       description: 'Transform training into engaging game-like experiences that motivate consistent practice and skill building.'
     },
     {
@@ -36,7 +36,7 @@ const ProblemSolution = () => {
     },
     {
       icon: Shield,
-      title: 'Blockchain-certified \'Proof of Play\'',
+      title: 'A clear proof of progress',
       description: 'Create immutable, verifiable records of training sessions and skill progression that build trust.'
     }
   ];

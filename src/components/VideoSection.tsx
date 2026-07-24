@@ -93,7 +93,7 @@ const VideoSection = () => {
                   SOKAI Training Demo
                 </h3>
                 <p className="text-sokai-gray text-sm md:text-base">
-                  Watch how AI-powered training transforms youth football practice
+                  Watch how guided training transforms youth football practice
                 </p>
               </div>
 

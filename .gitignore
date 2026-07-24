@@ -19,6 +19,9 @@
 
 # production
 /build
+/dist/
+/.open-next/
+/.sites-artifacts/
 
 # misc
 .DS_Store
