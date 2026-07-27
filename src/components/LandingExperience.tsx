@@ -30,6 +30,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FaAndroid, FaApple } from "react-icons/fa";
 
 const DOWNLOAD_URL = "https://linktr.ee/sokai_club";
 const DEMO_URL = "https://calendly.com/makses/sokai";
@@ -219,7 +220,11 @@ function StoreButton({
         />
       ) : (
         <span className="store-button__english">
-          <Download aria-hidden="true" />
+          {store === "App Store" ? (
+            <FaApple aria-hidden="true" />
+          ) : (
+            <FaAndroid aria-hidden="true" />
+          )}
           <span>
             <small>{store === "App Store" ? "Download on the" : "GET IT ON"}</small>
             <strong>{store}</strong>
