@@ -31,122 +31,174 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const APP_STORE_URL = "https://apps.apple.com/fr/app/sokai/id6759445678";
-const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.sokai.app&hl=fr";
 const DOWNLOAD_URL = "https://linktr.ee/sokai_club";
 const DEMO_URL = "https://calendly.com/makses/sokai";
 
-const screens = [
+export type Locale = "fr" | "en";
+
+const tx = (locale: Locale, fr: string, en: string) => (locale === "fr" ? fr : en);
+
+const getAppStoreUrl = (locale: Locale) =>
+  locale === "fr"
+    ? "https://apps.apple.com/fr/app/sokai/id6759445678"
+    : "https://apps.apple.com/app/sokai/id6759445678";
+
+const getPlayStoreUrl = (locale: Locale) =>
+  `https://play.google.com/store/apps/details?id=com.sokai.app&hl=${locale}`;
+
+const getScreens = (locale: Locale) => [
   {
     src: "/app-start.png",
-    label: "Démarrage",
-    kicker: "Entre dans le jeu",
-    copy: "Une expérience immédiate, pensée pour donner envie de toucher le ballon.",
+    label: tx(locale, "Démarrage", "Kick-off"),
+    kicker: tx(locale, "Entre dans le jeu", "Get in the game"),
+    copy: tx(
+      locale,
+      "Une expérience immédiate, pensée pour donner envie de toucher le ballon.",
+      "An instant experience designed to get you on the ball.",
+    ),
   },
   {
     src: "/app-training.png",
-    label: "Parcours",
-    kicker: "Progresse à ton rythme",
-    copy: "Des exercices courts, des niveaux clairs et une progression visible.",
+    label: tx(locale, "Parcours", "Training path"),
+    kicker: tx(locale, "Progresse à ton rythme", "Improve at your own pace"),
+    copy: tx(
+      locale,
+      "Des exercices courts, des niveaux clairs et une progression visible.",
+      "Short drills, clear levels and progress you can see.",
+    ),
   },
   {
     src: "/app-ranking.png",
-    label: "Meilleur XI",
-    kicker: "Mesure-toi aux autres",
-    copy: "Classements, ligues et défis transforment chaque répétition en motivation.",
+    label: tx(locale, "Meilleur XI", "Best XI"),
+    kicker: tx(locale, "Mesure-toi aux autres", "Test yourself against others"),
+    copy: tx(
+      locale,
+      "Classements, ligues et défis transforment chaque répétition en motivation.",
+      "Rankings, leagues and challenges turn every repetition into motivation.",
+    ),
   },
   {
     src: "/app-profile.png",
-    label: "Profil & stats",
-    kicker: "Prouve ta progression",
-    copy: "XP, temps de jeu, jongles et carte joueur réunis dans un seul profil.",
+    label: tx(locale, "Profil & stats", "Profile & stats"),
+    kicker: tx(locale, "Prouve ta progression", "Prove your progress"),
+    copy: tx(
+      locale,
+      "XP, temps de jeu, jongles et carte joueur réunis dans un seul profil.",
+      "XP, play time, keepy-uppies and your player card, all in one profile.",
+    ),
   },
   {
     src: "/app-streak.png",
-    label: "Série",
-    kicker: "Construis une habitude",
-    copy: "Les séries et le calendrier rendent la régularité simple et concrète.",
+    label: tx(locale, "Série", "Streak"),
+    kicker: tx(locale, "Construis une habitude", "Build a habit"),
+    copy: tx(
+      locale,
+      "Les séries et le calendrier rendent la régularité simple et concrète.",
+      "Streaks and the calendar make consistency simple and tangible.",
+    ),
   },
 ];
 
-const playerBenefits = [
+const getPlayerBenefits = (locale: Locale) => [
   {
     icon: Camera,
     number: "01",
-    title: "La caméra compte",
-    copy: "Elle détecte tes mouvements directement sur l'appareil. Aucun capteur ni équipement spécial.",
+    title: tx(locale, "La caméra compte", "The camera keeps count"),
+    copy: tx(
+      locale,
+      "Elle détecte tes mouvements directement sur l'appareil. Aucun capteur ni équipement spécial.",
+      "It detects your movements directly on your device. No sensors or special equipment.",
+    ),
   },
   {
     icon: Gauge,
     number: "02",
-    title: "Chaque effort compte",
-    copy: "Répétitions, scores, temps d'entraînement et XP rendent les progrès visibles.",
+    title: tx(locale, "Chaque effort compte", "Every effort counts"),
+    copy: tx(
+      locale,
+      "Répétitions, scores, temps d'entraînement et XP rendent les progrès visibles.",
+      "Repetitions, scores, training time and XP make your progress visible.",
+    ),
   },
   {
     icon: Trophy,
     number: "03",
-    title: "Le jeu motive",
-    copy: "Niveaux, séries, cartes joueur, classements et défis donnent envie de revenir demain.",
+    title: tx(locale, "Le jeu motive", "The game keeps you motivated"),
+    copy: tx(
+      locale,
+      "Niveaux, séries, cartes joueur, classements et défis donnent envie de revenir demain.",
+      "Levels, streaks, player cards, rankings and challenges keep you coming back.",
+    ),
   },
 ];
 
-const clubOffers = [
+const getClubOffers = (locale: Locale) => [
   {
-    tag: "Sans investissement club",
-    title: "Club Partenaire",
+    tag: tx(locale, "Sans investissement club", "No upfront club investment"),
+    title: tx(locale, "Club Partenaire", "Club Partner"),
     price: "20%",
-    suffix: "de commission récurrente dès le départ",
-    description:
+    suffix: tx(locale, "de commission récurrente dès le départ", "recurring commission from day one"),
+    description: tx(
+      locale,
       "Recommandez SOKAI à vos joueurs et familles avec un lien ou code dédié.",
+      "Recommend SOKAI to your players and families using a dedicated link or code.",
+    ),
     features: [
-      "Tarifs préférentiels pour votre communauté",
-      "Suivi des abonnements attribués au club",
-      "Contenus co-créés pendant la saison",
-      "Revenus additionnels récurrents",
+      tx(locale, "Tarifs préférentiels pour votre communauté", "Preferential rates for your community"),
+      tx(locale, "Suivi des abonnements attribués au club", "Tracking of subscriptions attributed to your club"),
+      tx(locale, "Contenus co-créés pendant la saison", "Co-created content throughout the season"),
+      tx(locale, "Revenus additionnels récurrents", "Additional recurring revenue"),
     ],
-    cta: "Devenir partenaire",
+    cta: tx(locale, "Devenir partenaire", "Become a partner"),
   },
   {
-    tag: "Pour équiper une équipe",
+    tag: tx(locale, "Pour équiper une équipe", "Equip your team"),
     title: "Club App",
     price: "199 $",
-    suffix: "/ mois · jusqu'à 20 joueurs",
-    description:
+    suffix: tx(locale, "/ mois · jusqu'à 20 joueurs", "/ month · up to 20 players"),
+    description: tx(
+      locale,
       "Prolongez vos séances à la maison et gardez une vue claire sur l'activité du groupe.",
+      "Extend training at home and keep a clear view of your squad's activity.",
+    ),
     features: [
-      "Bibliothèque SOKAI en accès illimité",
-      "Exercices assignés par le coach",
-      "Scores, répétitions et progression",
-      "Dashboard et classement interne",
+      tx(locale, "Bibliothèque SOKAI en accès illimité", "Unlimited access to the SOKAI library"),
+      tx(locale, "Exercices assignés par le coach", "Coach-assigned drills"),
+      tx(locale, "Scores, répétitions et progression", "Scores, repetitions and progress"),
+      tx(locale, "Dashboard et classement interne", "Dashboard and internal leaderboard"),
     ],
-    cta: "Demander une démo",
+    cta: tx(locale, "Demander une démo", "Request a demo"),
     featured: true,
   },
   {
-    tag: "Votre méthode dans SOKAI",
-    title: "Exercices sur mesure",
+    tag: tx(locale, "Votre méthode dans SOKAI", "Your methodology in SOKAI"),
+    title: tx(locale, "Exercices sur mesure", "Custom drills"),
     price: "299 $",
-    suffix: "à partir de",
-    description:
+    suffix: tx(locale, "à partir de", "starting from"),
+    description: tx(
+      locale,
       "Co-construisez des exercices alignés avec les objectifs et la pédagogie de votre club.",
+      "Co-create drills aligned with your club's goals and coaching philosophy.",
+    ),
     features: [
-      "Mécaniques définies avec votre staff",
-      "Niveaux, consignes et objectifs personnalisés",
-      "Durée, répétitions et scoring configurés",
-      "Intégration directe dans l'application",
+      tx(locale, "Mécaniques définies avec votre staff", "Training mechanics defined with your staff"),
+      tx(locale, "Niveaux, consignes et objectifs personnalisés", "Custom levels, instructions and goals"),
+      tx(locale, "Durée, répétitions et scoring configurés", "Configured duration, repetitions and scoring"),
+      tx(locale, "Intégration directe dans l'application", "Direct integration into the app"),
     ],
-    cta: "Demander un devis",
+    cta: tx(locale, "Demander un devis", "Request a quote"),
   },
 ];
 
 function StoreButton({
   href,
   store,
+  locale,
   compact = false,
 }: {
   href: string;
   store: "App Store" | "Google Play";
+  locale: Locale;
   compact?: boolean;
 }) {
   return (
@@ -155,15 +207,25 @@ function StoreButton({
       href={href}
       target="_blank"
       rel="noreferrer"
-      aria-label={`Télécharger SOKAI sur ${store}`}
+      aria-label={tx(locale, `Télécharger SOKAI sur ${store}`, `Download SOKAI on ${store}`)}
     >
-      <Image
-        src={store === "App Store" ? "/app-store-badge.svg" : "/google-play-badge.png"}
-        alt={store === "App Store" ? "Télécharger dans l’App Store" : "Disponible sur Google Play"}
-        width={store === "App Store" ? 250 : 646}
-        height={store === "App Store" ? 83 : 250}
-        className="store-button__badge"
-      />
+      {locale === "fr" ? (
+        <Image
+          src={store === "App Store" ? "/app-store-badge.svg" : "/google-play-badge.png"}
+          alt={store === "App Store" ? "Télécharger dans l’App Store" : "Disponible sur Google Play"}
+          width={store === "App Store" ? 250 : 646}
+          height={store === "App Store" ? 83 : 250}
+          className="store-button__badge"
+        />
+      ) : (
+        <span className="store-button__english">
+          <Download aria-hidden="true" />
+          <span>
+            <small>{store === "App Store" ? "Download on the" : "GET IT ON"}</small>
+            <strong>{store}</strong>
+          </span>
+        </span>
+      )}
     </a>
   );
 }
@@ -198,7 +260,7 @@ function PhoneFrame({
   );
 }
 
-function Nav() {
+function Nav({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
   const [clubMode, setClubMode] = useState(false);
 
@@ -218,15 +280,22 @@ function Nav() {
   return (
     <header className="site-nav">
       <div className="nav-shell">
-        <Link href="#top" className="brand" aria-label="SOKAI, retour en haut">
+        <Link
+          href="#top"
+          className="brand"
+          aria-label={tx(locale, "SOKAI, retour en haut", "SOKAI, back to top")}
+        >
           <Image src="/sokaiclub.png" alt="" width={52} height={52} priority />
           <span>SOKAI</span>
         </Link>
 
-        <nav className="nav-links" aria-label="Navigation principale">
-          <Link href="#joueurs">Pour les joueurs</Link>
-          <Link href="#clubs">Pour les clubs</Link>
-          <Link href="#offres">Les offres</Link>
+        <nav
+          className="nav-links"
+          aria-label={tx(locale, "Navigation principale", "Main navigation")}
+        >
+          <Link href="#players">{tx(locale, "Pour les joueurs", "For players")}</Link>
+          <Link href="#clubs">{tx(locale, "Pour les clubs", "For clubs")}</Link>
+          <Link href="#offers">{tx(locale, "Les offres", "Plans")}</Link>
         </nav>
 
         <div className="nav-actions">
@@ -241,12 +310,12 @@ function Nav() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 8 }}
               >
-                Réserver une démo
+                {tx(locale, "Réserver une démo", "Book a demo")}
               </motion.a>
             )}
           </AnimatePresence>
           <a className="nav-cta" href={DOWNLOAD_URL} target="_blank" rel="noreferrer">
-            <span>Télécharger l'app</span><ArrowRight size={17} />
+            <span>{tx(locale, "Télécharger l'app", "Download the app")}</span><ArrowRight size={17} />
           </a>
         </div>
 
@@ -256,7 +325,9 @@ function Nav() {
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
           aria-controls="mobile-navigation"
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-label={open
+            ? tx(locale, "Fermer le menu", "Close menu")
+            : tx(locale, "Ouvrir le menu", "Open menu")}
         >
           {open ? <X /> : <Menu />}
         </button>
@@ -271,20 +342,20 @@ function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
           >
-            <Link href="#joueurs" onClick={() => setOpen(false)}>
-              Pour les joueurs
+            <Link href="#players" onClick={() => setOpen(false)}>
+              {tx(locale, "Pour les joueurs", "For players")}
             </Link>
             <Link href="#clubs" onClick={() => setOpen(false)}>
-              Pour les clubs
+              {tx(locale, "Pour les clubs", "For clubs")}
             </Link>
-            <Link href="#offres" onClick={() => setOpen(false)}>
-              Les offres
+            <Link href="#offers" onClick={() => setOpen(false)}>
+              {tx(locale, "Les offres", "Plans")}
             </Link>
             <a href={DOWNLOAD_URL} target="_blank" rel="noreferrer">
-              Télécharger l'app
+              {tx(locale, "Télécharger l'app", "Download the app")}
             </a>
             <a href={DEMO_URL} target="_blank" rel="noreferrer">
-              Réserver une démo club
+              {tx(locale, "Réserver une démo club", "Book a club demo")}
             </a>
           </motion.nav>
         )}
@@ -293,8 +364,10 @@ function Nav() {
   );
 }
 
-function Hero() {
+function Hero({ locale }: { locale: Locale }) {
   const reduceMotion = useReducedMotion();
+  const appStoreUrl = getAppStoreUrl(locale);
+  const playStoreUrl = getPlayStoreUrl(locale);
 
   return (
     <section className="hero" id="top">
@@ -310,40 +383,56 @@ function Hero() {
           transition={{ duration: 0.65 }}
         >
           <div className="eyebrow">
-            <span className="eyebrow__dot" /> L'app d'entraînement football est disponible
+            <span className="eyebrow__dot" /> {tx(
+              locale,
+              "L'app d'entraînement football est disponible",
+              "The football training app is here",
+            )}
           </div>
           <h1>
             20 minutes.
-            <span>Un ballon. Ton téléphone.</span>
-            <em>Progresse.</em>
+            <span>{tx(locale, "Un ballon. Ton téléphone.", "One ball. Your phone.")}</span>
+            <em>{tx(locale, "Progresse.", "Improve.")}</em>
           </h1>
           <p className="hero__lead">
-            SOKAI transforme l'entraînement à la maison en jeu : la caméra suit,
-            le score mesure, la progression motive.
+            {tx(
+              locale,
+              "SOKAI transforme l'entraînement à la maison en jeu : la caméra suit, le score mesure, la progression motive.",
+              "SOKAI turns training at home into a game: the camera tracks, the score measures and your progress keeps you motivated.",
+            )}
           </p>
 
-          <div className="hero__paths" aria-label="Choisir votre parcours">
-            <a href="#joueurs" className="hero-path hero-path--player">
-              <Target size={18} /> Je suis joueur
+          <div
+            className="hero__paths"
+            aria-label={tx(locale, "Choisir votre parcours", "Choose your path")}
+          >
+            <a href="#players" className="hero-path hero-path--player">
+              <Target size={18} /> {tx(locale, "Je suis joueur", "I'm a player")}
             </a>
             <a href="#clubs" className="hero-path hero-path--club">
-              <Users size={18} /> Je suis club / coach
+              <Users size={18} /> {tx(locale, "Je suis club / coach", "I'm a club / coach")}
             </a>
           </div>
 
           <div className="hero__actions">
-            <StoreButton href={APP_STORE_URL} store="App Store" />
-            <StoreButton href={PLAY_STORE_URL} store="Google Play" />
+            <StoreButton href={appStoreUrl} store="App Store" locale={locale} />
+            <StoreButton href={playStoreUrl} store="Google Play" locale={locale} />
           </div>
 
-          <div className="hero__proofs" aria-label="Avantages clés">
-            <span><Check size={15} /> Sans capteur</span>
-            <span><Check size={15} /> À la maison</span>
+          <div
+            className="hero__proofs"
+            aria-label={tx(locale, "Avantages clés", "Key benefits")}
+          >
+            <span><Check size={15} /> {tx(locale, "Sans capteur", "No sensors")}</span>
+            <span><Check size={15} /> {tx(locale, "À la maison", "Train at home")}</span>
             <span><Check size={15} /> iOS & Android</span>
           </div>
         </motion.div>
 
-        <div className="hero__visual" aria-label="Aperçu de l'application SOKAI">
+        <div
+          className="hero__visual"
+          aria-label={tx(locale, "Aperçu de l'application SOKAI", "Preview of the SOKAI app")}
+        >
           <motion.div
             className="hero-phone-wrap"
             initial={{ opacity: 0, scale: 0.88, rotate: 5 }}
@@ -360,7 +449,11 @@ function Hero() {
               y: { duration: 5, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut" },
             }}
           >
-            <PhoneFrame src="/app-start.png" alt="Écran d'accueil SOKAI" priority />
+            <PhoneFrame
+              src="/app-start.png"
+              alt={tx(locale, "Écran d'accueil SOKAI", "SOKAI home screen")}
+              priority
+            />
           </motion.div>
 
           <motion.div
@@ -369,7 +462,7 @@ function Hero() {
             transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
           >
             <Clock3 size={18} />
-            <span><strong>20 min</strong> par jour</span>
+            <span><strong>20 min</strong> {tx(locale, "par jour", "a day")}</span>
           </motion.div>
           <motion.div
             className="floating-chip floating-chip--tracking"
@@ -377,7 +470,10 @@ function Hero() {
             transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
           >
             <Target size={18} />
-            <span><strong>Suivi en direct</strong> scores instantanés</span>
+            <span>
+              <strong>{tx(locale, "Suivi en direct", "Live tracking")}</strong>{" "}
+              {tx(locale, "scores instantanés", "instant scores")}
+            </span>
           </motion.div>
           <div className="hero__orbit hero__orbit--one" />
           <div className="hero__orbit hero__orbit--two" />
@@ -394,9 +490,13 @@ function Hero() {
   );
 }
 
-function PlayerStory() {
+function PlayerStory({ locale }: { locale: Locale }) {
   const [activeScreen, setActiveScreen] = useState(1);
   const reduceMotion = useReducedMotion();
+  const screens = getScreens(locale);
+  const playerBenefits = getPlayerBenefits(locale);
+  const appStoreUrl = getAppStoreUrl(locale);
+  const playStoreUrl = getPlayStoreUrl(locale);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -404,20 +504,29 @@ function PlayerStory() {
       setActiveScreen((current) => (current + 1) % screens.length);
     }, 6000);
     return () => window.clearInterval(timer);
-  }, [reduceMotion]);
+  }, [reduceMotion, screens.length]);
 
   return (
     <>
-      <section className="problem-section" id="joueurs">
+      <section className="problem-section" id="players">
         <div className="section-shell">
           <div className="split-heading">
             <div>
-              <span className="section-index">01 — POUR LES JOUEURS</span>
-              <h2>Le talent se travaille aussi entre deux entraînements.</h2>
+              <span className="section-index">
+                {tx(locale, "01 — POUR LES JOUEURS", "01 — FOR PLAYERS")}
+              </span>
+              <h2>{tx(
+                locale,
+                "Le talent se travaille aussi entre deux entraînements.",
+                "Talent is built between team sessions too.",
+              )}</h2>
             </div>
             <p>
-              Les séances collectives ne laissent pas toujours le temps de répéter. SOKAI
-              ajoute une routine individuelle courte, mesurable et motivante à la maison.
+              {tx(
+                locale,
+                "Les séances collectives ne laissent pas toujours le temps de répéter. SOKAI ajoute une routine individuelle courte, mesurable et motivante à la maison.",
+                "Team sessions don't always leave enough time for repetition. SOKAI adds a short, measurable and motivating individual routine at home.",
+              )}
             </p>
           </div>
 
@@ -452,14 +561,27 @@ function PlayerStory() {
         <div className="app-tour__glow" />
         <div className="section-shell app-tour__inner">
           <div className="app-tour__copy">
-            <span className="section-index section-index--light">DANS L'APP</span>
-            <h2>Tout ce qui donne envie de jouer. Et de rejouer.</h2>
+            <span className="section-index section-index--light">
+              {tx(locale, "DANS L'APP", "INSIDE THE APP")}
+            </span>
+            <h2>{tx(
+              locale,
+              "Tout ce qui donne envie de jouer. Et de rejouer.",
+              "Everything that makes you want to play. And play again.",
+            )}</h2>
             <p>
-              Découvre un parcours qui transforme chaque session en preuve de progression —
-              du premier exercice jusqu'au classement.
+              {tx(
+                locale,
+                "Découvre un parcours qui transforme chaque session en preuve de progression — du premier exercice jusqu'au classement.",
+                "Discover a journey that turns every session into proof of progress — from your first drill to the leaderboard.",
+              )}
             </p>
 
-            <div className="screen-selector" role="tablist" aria-label="Écrans de l'application">
+            <div
+              className="screen-selector"
+              role="tablist"
+              aria-label={tx(locale, "Écrans de l'application", "App screens")}
+            >
               {screens.map((screen, index) => (
                 <button
                   key={screen.label}
@@ -498,7 +620,7 @@ function PlayerStory() {
             >
               <PhoneFrame
                 src={screens[(activeScreen + screens.length - 1) % screens.length].src}
-                alt="Écran précédent de SOKAI"
+                alt={tx(locale, "Écran précédent de SOKAI", "Previous SOKAI screen")}
               />
             </motion.div>
 
@@ -511,7 +633,14 @@ function PlayerStory() {
                 exit={{ opacity: 0, y: -20, rotateY: 12 }}
                 transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
               >
-                <PhoneFrame src={screens[activeScreen].src} alt={`Écran ${screens[activeScreen].label} de SOKAI`} />
+                <PhoneFrame
+                  src={screens[activeScreen].src}
+                  alt={tx(
+                    locale,
+                    `Écran ${screens[activeScreen].label} de SOKAI`,
+                    `SOKAI ${screens[activeScreen].label} screen`,
+                  )}
+                />
               </motion.div>
             </AnimatePresence>
 
@@ -522,7 +651,7 @@ function PlayerStory() {
             >
               <PhoneFrame
                 src={screens[(activeScreen + 1) % screens.length].src}
-                alt="Écran suivant de SOKAI"
+                alt={tx(locale, "Écran suivant de SOKAI", "Next SOKAI screen")}
               />
             </motion.div>
 
@@ -536,17 +665,17 @@ function PlayerStory() {
           <div className="daily-number">
             <span>20</span>
             <strong>MIN</strong>
-            <small>PAR JOUR</small>
+            <small>{tx(locale, "PAR JOUR", "A DAY")}</small>
           </div>
           <div className="daily-copy">
-            <span className="section-index">LA ROUTINE SOKAI</span>
-            <h2>Un petit créneau. Une vraie habitude.</h2>
+            <span className="section-index">{tx(locale, "LA ROUTINE SOKAI", "THE SOKAI ROUTINE")}</span>
+            <h2>{tx(locale, "Un petit créneau. Une vraie habitude.", "A short session. A lasting habit.")}</h2>
             <div className="steps-grid">
               {[
-                [Smartphone, "Pose le téléphone", "Cadre-toi, l'app te guide."],
-                [Dumbbell, "Choisis ton exercice", "Contrôle, jongle, coordination."],
-                [Play, "Joue 20 minutes", "SOKAI suit ta performance."],
-                [LineChart, "Vois tes progrès", "XP, stats, séries et classement."],
+                [Smartphone, tx(locale, "Pose le téléphone", "Set up your phone"), tx(locale, "Cadre-toi, l'app te guide.", "Get in frame and let the app guide you.")],
+                [Dumbbell, tx(locale, "Choisis ton exercice", "Choose your drill"), tx(locale, "Contrôle, jongle, coordination.", "Ball control, keepy-uppies, coordination.")],
+                [Play, tx(locale, "Joue 20 minutes", "Play for 20 minutes"), tx(locale, "SOKAI suit ta performance.", "SOKAI tracks your performance.")],
+                [LineChart, tx(locale, "Vois tes progrès", "See your progress"), tx(locale, "XP, stats, séries et classement.", "XP, stats, streaks and rankings.")],
               ].map(([Icon, title, copy], index) => {
                 const StepIcon = Icon as typeof Smartphone;
                 return (
@@ -559,8 +688,8 @@ function PlayerStory() {
               })}
             </div>
             <div className="inline-store-actions">
-              <StoreButton href={APP_STORE_URL} store="App Store" compact />
-              <StoreButton href={PLAY_STORE_URL} store="Google Play" compact />
+              <StoreButton href={appStoreUrl} store="App Store" locale={locale} compact />
+              <StoreButton href={playStoreUrl} store="Google Play" locale={locale} compact />
             </div>
           </div>
         </div>
@@ -569,13 +698,13 @@ function PlayerStory() {
   );
 }
 
-function ClubDashboard() {
+function ClubDashboard({ locale }: { locale: Locale }) {
   const bars = [46, 62, 58, 82, 73, 94, 68];
   const players = [
-    { initials: "MK", name: "Malo K.", detail: "14 exos · 286 XP", progress: 88, delta: "+14%" },
-    { initials: "LN", name: "Lina N.", detail: "12 exos · 244 XP", progress: 76, delta: "+11%" },
-    { initials: "YS", name: "Yanis S.", detail: "10 exos · 201 XP", progress: 69, delta: "+8%" },
-    { initials: "AM", name: "Aya M.", detail: "9 exos · 188 XP", progress: 61, delta: "+7%" },
+    { initials: "MK", name: "Malo K.", detail: tx(locale, "14 exos · 286 XP", "14 drills · 286 XP"), progress: 88, delta: "+14%" },
+    { initials: "LN", name: "Lina N.", detail: tx(locale, "12 exos · 244 XP", "12 drills · 244 XP"), progress: 76, delta: "+11%" },
+    { initials: "YS", name: "Yanis S.", detail: tx(locale, "10 exos · 201 XP", "10 drills · 201 XP"), progress: 69, delta: "+8%" },
+    { initials: "AM", name: "Aya M.", detail: tx(locale, "9 exos · 188 XP", "9 drills · 188 XP"), progress: 61, delta: "+7%" },
   ];
 
   return (
@@ -592,48 +721,56 @@ function ClubDashboard() {
           <span>SOKAI <strong>CLUB DESK</strong></span>
         </div>
         <div className="dashboard__filters">
-          <span>U15 · Groupe A</span>
-          <span>7 derniers jours</span>
+          <span>{tx(locale, "U15 · Groupe A", "U15 · Group A")}</span>
+          <span>{tx(locale, "7 derniers jours", "Last 7 days")}</span>
         </div>
       </div>
 
       <div className="dashboard__content">
         <div className="dashboard__heading">
           <div>
-            <small>TABLEAU DE BORD</small>
-            <h3>Bonjour Coach Malik.</h3>
+            <small>{tx(locale, "TABLEAU DE BORD", "DASHBOARD")}</small>
+            <h3>{tx(locale, "Bonjour Coach Malik.", "Hello Coach Malik.")}</h3>
           </div>
-          <span className="dashboard__action"><Target size={16} /> Assigner un exercice</span>
+          <span className="dashboard__action">
+            <Target size={16} /> {tx(locale, "Assigner un exercice", "Assign a drill")}
+          </span>
         </div>
 
         <div className="metric-row">
           <article>
             <div className="metric-icon"><Users size={19} /></div>
-            <span>Joueurs actifs</span>
+            <span>{tx(locale, "Joueurs actifs", "Active players")}</span>
             <strong>18<small>/20</small></strong>
-            <em>+3 cette semaine</em>
+            <em>{tx(locale, "+3 cette semaine", "+3 this week")}</em>
           </article>
           <article>
             <div className="metric-icon"><Goal size={19} /></div>
-            <span>Exercices terminés</span>
+            <span>{tx(locale, "Exercices terminés", "Completed drills")}</span>
             <strong>86<small>%</small></strong>
-            <em>Objectif : 80%</em>
+            <em>{tx(locale, "Objectif : 80%", "Target: 80%")}</em>
           </article>
           <article>
             <div className="metric-icon"><LineChart size={19} /></div>
-            <span>Progression moyenne</span>
+            <span>{tx(locale, "Progression moyenne", "Average progress")}</span>
             <strong>+12<small>%</small></strong>
-            <em>Sur les 30 derniers jours</em>
+            <em>{tx(locale, "Sur les 30 derniers jours", "Over the last 30 days")}</em>
           </article>
         </div>
 
         <div className="dashboard__grid">
           <article className="chart-card">
             <div className="card-heading">
-              <div><strong>Activité du groupe</strong><span>Sessions terminées</span></div>
-              <span className="live-pill"><i /> En direct</span>
+              <div>
+                <strong>{tx(locale, "Activité du groupe", "Squad activity")}</strong>
+                <span>{tx(locale, "Sessions terminées", "Completed sessions")}</span>
+              </div>
+              <span className="live-pill"><i /> {tx(locale, "En direct", "Live")}</span>
             </div>
-            <div className="bar-chart" aria-label="Activité hebdomadaire du groupe">
+            <div
+              className="bar-chart"
+              aria-label={tx(locale, "Activité hebdomadaire du groupe", "Weekly squad activity")}
+            >
               {bars.map((height, index) => (
                 <div className="bar-column" key={index}>
                   <div className="bar-track">
@@ -645,20 +782,25 @@ function ClubDashboard() {
                       transition={{ duration: 0.75, delay: 0.12 * index, ease: "easeOut" }}
                     />
                   </div>
-                  <span>{["L", "M", "M", "J", "V", "S", "D"][index]}</span>
+                  <span>{(locale === "fr"
+                    ? ["L", "M", "M", "J", "V", "S", "D"]
+                    : ["M", "T", "W", "T", "F", "S", "S"])[index]}</span>
                 </div>
               ))}
             </div>
             <div className="chart-summary">
-              <span><strong>104</strong> sessions</span>
-              <span><strong>31 h</strong> de jeu</span>
-              <span><strong>2 486</strong> répétitions</span>
+              <span><strong>104</strong> {tx(locale, "sessions", "sessions")}</span>
+              <span><strong>31 h</strong> {tx(locale, "de jeu", "played")}</span>
+              <span><strong>2 486</strong> {tx(locale, "répétitions", "repetitions")}</span>
             </div>
           </article>
 
           <article className="players-card">
             <div className="card-heading">
-              <div><strong>Progression joueurs</strong><span>Objectif hebdomadaire</span></div>
+              <div>
+                <strong>{tx(locale, "Progression joueurs", "Player progress")}</strong>
+                <span>{tx(locale, "Objectif hebdomadaire", "Weekly target")}</span>
+              </div>
               <ChevronRight size={18} />
             </div>
             <div className="player-list">
@@ -684,12 +826,16 @@ function ClubDashboard() {
         </div>
       </div>
 
-      <span className="dashboard__caption"><Sparkles size={14} /> Données de démonstration</span>
+      <span className="dashboard__caption">
+        <Sparkles size={14} /> {tx(locale, "Données de démonstration", "Demo data")}
+      </span>
     </motion.div>
   );
 }
 
-function ClubSection() {
+function ClubSection({ locale }: { locale: Locale }) {
+  const clubOffers = getClubOffers(locale);
+
   return (
     <>
       <section className="clubs-section" id="clubs">
@@ -697,23 +843,32 @@ function ClubSection() {
         <div className="section-shell">
           <div className="split-heading split-heading--dark">
             <div>
-              <span className="section-index section-index--light">02 — POUR LES CLUBS</span>
-              <h2>Votre méthodologie continue après l'entraînement.</h2>
+              <span className="section-index section-index--light">
+                {tx(locale, "02 — POUR LES CLUBS", "02 — FOR CLUBS")}
+              </span>
+              <h2>{tx(
+                locale,
+                "Votre méthodologie continue après l'entraînement.",
+                "Your methodology continues after training.",
+              )}</h2>
             </div>
             <p>
-              Assignez des exercices à la maison, suivez l'engagement et rendez la
-              progression lisible entre deux séances collectives.
+              {tx(
+                locale,
+                "Assignez des exercices à la maison, suivez l'engagement et rendez la progression lisible entre deux séances collectives.",
+                "Assign drills at home, track engagement and make progress visible between team sessions.",
+              )}
             </p>
           </div>
 
-          <ClubDashboard />
+          <ClubDashboard locale={locale} />
 
           <div className="club-feature-row">
             {[
-              [Target, "Piloter", "Assignez les exercices et objectifs de la semaine."],
-              [BarChart3, "Mesurer", "Suivez scores, répétitions, assiduité et progression."],
-              [Trophy, "Engager", "Animez le groupe avec des défis et classements internes."],
-              [ShieldCheck, "Personnaliser", "Intégrez votre méthode et vos propres mécaniques."],
+              [Target, tx(locale, "Piloter", "Guide"), tx(locale, "Assignez les exercices et objectifs de la semaine.", "Assign the week's drills and goals.")],
+              [BarChart3, tx(locale, "Mesurer", "Measure"), tx(locale, "Suivez scores, répétitions, assiduité et progression.", "Track scores, repetitions, attendance and progress.")],
+              [Trophy, tx(locale, "Engager", "Engage"), tx(locale, "Animez le groupe avec des défis et classements internes.", "Bring the squad together with challenges and internal rankings.")],
+              [ShieldCheck, tx(locale, "Personnaliser", "Customize"), tx(locale, "Intégrez votre méthode et vos propres mécaniques.", "Integrate your methodology and your own mechanics.")],
             ].map(([Icon, title, copy], index) => {
               const FeatureIcon = Icon as typeof Target;
               return (
@@ -734,13 +889,23 @@ function ClubSection() {
         </div>
       </section>
 
-      <section className="offers-section" id="offres">
+      <section className="offers-section" id="offers">
         <div className="section-shell">
           <div className="offers-heading">
-            <span className="section-index">TROIS FAÇONS D'AVANCER ENSEMBLE</span>
-            <h2>Une offre qui s'adapte à votre projet sportif.</h2>
+            <span className="section-index">
+              {tx(locale, "TROIS FAÇONS D'AVANCER ENSEMBLE", "THREE WAYS TO MOVE FORWARD TOGETHER")}
+            </span>
+            <h2>{tx(
+              locale,
+              "Une offre qui s'adapte à votre projet sportif.",
+              "A plan that adapts to your sporting project.",
+            )}</h2>
             <p>
-              Recommandez SOKAI, équipez une équipe ou intégrez vos propres exercices.
+              {tx(
+                locale,
+                "Recommandez SOKAI, équipez une équipe ou intégrez vos propres exercices.",
+                "Recommend SOKAI, equip a team or integrate your own drills.",
+              )}
             </p>
           </div>
 
@@ -754,7 +919,11 @@ function ClubSection() {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: index * 0.1 }}
               >
-                {offer.featured && <span className="popular-label">LE PLUS COMPLET</span>}
+                {offer.featured && (
+                  <span className="popular-label">
+                    {tx(locale, "LE PLUS COMPLET", "MOST COMPLETE")}
+                  </span>
+                )}
                 <span className="offer-card__tag">{offer.tag}</span>
                 <h3>{offer.title}</h3>
                 <div className="offer-price"><strong>{offer.price}</strong><span>{offer.suffix}</span></div>
@@ -772,8 +941,11 @@ function ClubSection() {
           </div>
 
           <p className="pricing-note">
-            Les tarifs indiqués sont des points de départ. Les conditions finales dépendent du
-            nombre d'équipes, de joueurs et du niveau de personnalisation demandé.
+            {tx(
+              locale,
+              "Les tarifs indiqués sont des points de départ. Les conditions finales dépendent du nombre d'équipes, de joueurs et du niveau de personnalisation demandé.",
+              "The prices shown are starting points. Final terms depend on the number of teams and players, and the level of customization required.",
+            )}
           </p>
         </div>
       </section>
@@ -781,13 +953,28 @@ function ClubSection() {
   );
 }
 
-function FaqAndCta() {
+function FaqAndCta({ locale }: { locale: Locale }) {
   const faqs = [
-    ["De quoi un joueur a-t-il besoin ?", "D'un ballon, d'un smartphone et d'un petit espace pour bouger. Aucun capteur ni équipement spécial n'est nécessaire."],
-    ["SOKAI est-elle déjà disponible ?", "Oui. L'application est disponible sur l'App Store pour iPhone et iPad, ainsi que sur Google Play pour Android."],
-    ["Comment l'application mesure-t-elle la progression ?", "La caméra analyse les mouvements directement sur l'appareil. SOKAI suit ensuite les scores, répétitions, temps d'entraînement, XP et séries."],
-    ["Un coach peut-il assigner des exercices ?", "Oui. L'offre Club App prévoit l'assignation d'exercices et un dashboard dédié pour suivre l'activité et la progression des joueurs."],
-    ["Peut-on intégrer la méthode de notre club ?", "Oui. SOKAI peut co-construire des exercices sur mesure avec votre staff : consignes, niveaux, objectifs, durée, répétitions et scoring."],
+    [
+      tx(locale, "De quoi un joueur a-t-il besoin ?", "What does a player need?"),
+      tx(locale, "D'un ballon, d'un smartphone et d'un petit espace pour bouger. Aucun capteur ni équipement spécial n'est nécessaire.", "A ball, a smartphone and a small space to move around. No sensors or special equipment are required."),
+    ],
+    [
+      tx(locale, "SOKAI est-elle déjà disponible ?", "Is SOKAI available now?"),
+      tx(locale, "Oui. L'application est disponible sur l'App Store pour iPhone et iPad, ainsi que sur Google Play pour Android.", "Yes. The app is available on the App Store for iPhone and iPad, and on Google Play for Android."),
+    ],
+    [
+      tx(locale, "Comment l'application mesure-t-elle la progression ?", "How does the app measure progress?"),
+      tx(locale, "La caméra analyse les mouvements directement sur l'appareil. SOKAI suit ensuite les scores, répétitions, temps d'entraînement, XP et séries.", "The camera analyzes movements directly on the device. SOKAI then tracks scores, repetitions, training time, XP and streaks."),
+    ],
+    [
+      tx(locale, "Un coach peut-il assigner des exercices ?", "Can a coach assign drills?"),
+      tx(locale, "Oui. L'offre Club App prévoit l'assignation d'exercices et un dashboard dédié pour suivre l'activité et la progression des joueurs.", "Yes. The Club App plan lets coaches assign drills and use a dedicated dashboard to track player activity and progress."),
+    ],
+    [
+      tx(locale, "Peut-on intégrer la méthode de notre club ?", "Can we integrate our club's methodology?"),
+      tx(locale, "Oui. SOKAI peut co-construire des exercices sur mesure avec votre staff : consignes, niveaux, objectifs, durée, répétitions et scoring.", "Yes. SOKAI can co-create custom drills with your staff, including instructions, levels, goals, duration, repetitions and scoring."),
+    ],
   ];
 
   return (
@@ -796,8 +983,12 @@ function FaqAndCta() {
         <div className="section-shell faq-grid">
           <div>
             <span className="section-index">FAQ</span>
-            <h2>Les réponses avant de commencer.</h2>
-            <p>Une question plus précise ? Écrivez-nous, on vous répond directement.</p>
+            <h2>{tx(locale, "Les réponses avant de commencer.", "Answers before you get started.")}</h2>
+            <p>{tx(
+              locale,
+              "Une question plus précise ? Écrivez-nous, on vous répond directement.",
+              "Have a more specific question? Send us a message and we'll get back to you.",
+            )}</p>
             <a href="mailto:contact@sokai.club"><Mail size={17} /> contact@sokai.club</a>
           </div>
           <div className="faq-list">
@@ -816,14 +1007,18 @@ function FaqAndCta() {
         <div className="section-shell final-cta__inner">
           <div>
             <span className="section-index section-index--light">START THE GAME</span>
-            <h2>Joueur ou club, le prochain entraînement commence ici.</h2>
+            <h2>{tx(
+              locale,
+              "Joueur ou club, le prochain entraînement commence ici.",
+              "Player or club, your next training session starts here.",
+            )}</h2>
           </div>
           <div className="final-cta__actions">
             <a className="primary-action" href={DOWNLOAD_URL} target="_blank" rel="noreferrer">
-              <Download size={19} /> Télécharger SOKAI
+              <Download size={19} /> {tx(locale, "Télécharger SOKAI", "Download SOKAI")}
             </a>
             <a className="secondary-action" href={DEMO_URL} target="_blank" rel="noreferrer">
-              <CalendarDays size={19} /> Réserver une démo club
+              <CalendarDays size={19} /> {tx(locale, "Réserver une démo club", "Book a club demo")}
             </a>
           </div>
         </div>
@@ -832,7 +1027,7 @@ function FaqAndCta() {
   );
 }
 
-function Footer() {
+function Footer({ locale }: { locale: Locale }) {
   return (
     <footer className="footer">
       <div className="section-shell footer__inner">
@@ -841,27 +1036,35 @@ function Footer() {
           <div><strong>SOKAI</strong><span>Play. Have fun. Improve.</span></div>
         </div>
         <div className="footer__links">
-          <Link href="#joueurs">Joueurs</Link>
+          <Link href="#players">{tx(locale, "Joueurs", "Players")}</Link>
           <Link href="#clubs">Clubs</Link>
           <a href="https://app.sokai.club/support" target="_blank" rel="noreferrer">Support</a>
-          <a href="https://app.sokai.club/privacy" target="_blank" rel="noreferrer">Confidentialité</a>
-          <a href="https://app.sokai.club/terms" target="_blank" rel="noreferrer">Conditions</a>
+          <a href="https://app.sokai.club/privacy" target="_blank" rel="noreferrer">
+            {tx(locale, "Confidentialité", "Privacy")}
+          </a>
+          <a href="https://app.sokai.club/terms" target="_blank" rel="noreferrer">
+            {tx(locale, "Conditions", "Terms")}
+          </a>
         </div>
-        <p>© {new Date().getFullYear()} SOKAI GROUP. Tous droits réservés.</p>
+        <p>© {new Date().getFullYear()} SOKAI GROUP. {tx(locale, "Tous droits réservés.", "All rights reserved.")}</p>
       </div>
     </footer>
   );
 }
 
-export default function LandingExperience() {
+export default function LandingExperience({ locale }: { locale: Locale }) {
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
   return (
     <main>
-      <Nav />
-      <Hero />
-      <PlayerStory />
-      <ClubSection />
-      <FaqAndCta />
-      <Footer />
+      <Nav locale={locale} />
+      <Hero locale={locale} />
+      <PlayerStory locale={locale} />
+      <ClubSection locale={locale} />
+      <FaqAndCta locale={locale} />
+      <Footer locale={locale} />
     </main>
   );
 }
