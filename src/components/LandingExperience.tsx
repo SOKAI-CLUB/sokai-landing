@@ -4,7 +4,6 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   BarChart3,
-  Camera,
   CalendarDays,
   Check,
   ChevronRight,
@@ -31,6 +30,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaAndroid, FaApple } from "react-icons/fa";
+import { FaInstagram, FaTiktok, FaXTwitter, FaYoutube } from "react-icons/fa6";
 
 const DOWNLOAD_URL = "https://linktr.ee/sokai_club";
 const DEMO_URL = "https://calendly.com/makses/sokai";
@@ -50,12 +50,12 @@ const getPlayStoreUrl = (locale: Locale) =>
 const getScreens = (locale: Locale) => [
   {
     src: "/app-start.png",
-    label: tx(locale, "Démarrage", "Kick-off"),
-    kicker: tx(locale, "Entre dans le jeu", "Get in the game"),
+    label: tx(locale, "Niveaux", "Training levels"),
+    kicker: tx(locale, "Choisis ton parcours", "Choose your training path"),
     copy: tx(
       locale,
-      "Une expérience immédiate, pensée pour donner envie de toucher le ballon.",
-      "An instant experience designed to get you on the ball.",
+      "Choisis ton niveau et vois clairement les prochaines étapes.",
+      "Choose your level and clearly see what comes next.",
     ),
   },
   {
@@ -102,13 +102,17 @@ const getScreens = (locale: Locale) => [
 
 const getPlayerBenefits = (locale: Locale) => [
   {
-    icon: Camera,
+    icon: Sparkles,
     number: "01",
-    title: tx(locale, "La caméra compte", "The camera keeps count"),
+    title: tx(
+      locale,
+      "Notre système intelligent compte chaque répétition",
+      "Our smart system counts every rep",
+    ),
     copy: tx(
       locale,
-      "Elle détecte tes mouvements directement sur l'appareil. Aucun capteur ni équipement spécial.",
-      "It detects your movements directly on your device. No sensors or special equipment.",
+      "Il détecte les mouvements directement sur l'appareil. Aucun capteur ni équipement spécial.",
+      "It detects movements directly on the device. No sensors or special equipment.",
     ),
   },
   {
@@ -135,51 +139,48 @@ const getPlayerBenefits = (locale: Locale) => [
 
 const getClubOffers = (locale: Locale) => [
   {
-    tag: tx(locale, "Sans investissement club", "No upfront club investment"),
-    title: tx(locale, "Club Partenaire", "Club Partner"),
-    price: "20%",
-    suffix: tx(locale, "de commission récurrente dès le départ", "recurring commission from day one"),
+    tag: tx(locale, "Pour les clubs, académies et coachs", "For clubs, academies and coaches"),
+    title: tx(
+      locale,
+      "Augmenter vos sources. Devenez partenaire",
+      "Help your players improve. Earn commission.",
+    ),
     description: tx(
       locale,
-      "Recommandez SOKAI à vos joueurs et familles avec un lien ou code dédié.",
-      "Recommend SOKAI to your players and families using a dedicated link or code.",
+      "Recommandez SOKAI à vos joueurs et à leurs familles. Lorsqu'ils s'inscrivent via le lien de votre club, vous touchez une commission — tout en leur donnant un moyen clair de continuer à s'entraîner à la maison.",
+      "Recommend SOKAI to your players and families. When they join through your club link, you earn commission—and give them a clear way to keep training at home.",
     ),
     features: [
-      tx(locale, "Tarifs préférentiels pour votre communauté", "Preferential rates for your community"),
-      tx(locale, "Suivi des abonnements attribués au club", "Tracking of subscriptions attributed to your club"),
-      tx(locale, "Contenus co-créés pendant la saison", "Co-created content throughout the season"),
-      tx(locale, "Revenus additionnels récurrents", "Additional recurring revenue"),
+      tx(locale, "Lien partenaire dédié à votre club", "A dedicated partner link for your club"),
+      tx(locale, "Commission récurrente sur les inscriptions attribuées", "Recurring commission on attributed sign-ups"),
+      tx(locale, "Une offre simple à partager avec les familles", "A simple offer to share with families"),
     ],
-    cta: tx(locale, "Devenir partenaire", "Become a partner"),
+    cta: tx(locale, "Commencer à gagner avec SOKAI", "Start earning with SOKAI"),
   },
   {
-    tag: tx(locale, "Pour équiper une équipe", "Equip your team"),
-    title: "Club App",
-    price: "199 $",
-    suffix: tx(locale, "/ mois · jusqu'à 20 joueurs", "/ month · up to 20 players"),
+    tag: tx(locale, "Pour les clubs et académies", "For clubs and academies"),
+    title: tx(locale, "L'application SOKAI pour vos joueurs", "SOKAI App for Your Players"),
     description: tx(
       locale,
-      "Prolongez vos séances à la maison et gardez une vue claire sur l'activité du groupe.",
-      "Extend training at home and keep a clear view of your squad's activity.",
+      "Donnez à vos joueurs accès à l'application SOKAI pour suivre des entraînements guidés et continuer à progresser à la maison entre les séances.",
+      "Give your players access to the SOKAI app so they can follow guided training and keep improving at home between team sessions.",
     ),
     features: [
-      tx(locale, "Bibliothèque SOKAI en accès illimité", "Unlimited access to the SOKAI library"),
-      tx(locale, "Exercices assignés par le coach", "Coach-assigned drills"),
+      tx(locale, "Parcours d'entraînement guidés", "Guided training paths"),
+      tx(locale, "Niveaux, défis et classements", "Levels, challenges and leaderboards"),
       tx(locale, "Scores, répétitions et progression", "Scores, repetitions and progress"),
-      tx(locale, "Dashboard et classement interne", "Dashboard and internal leaderboard"),
+      tx(locale, "Disponible sur iOS et Android", "Available on iOS and Android"),
     ],
-    cta: tx(locale, "Demander une démo", "Request a demo"),
+    cta: tx(locale, "Demander une démo", "Request a Demo"),
     featured: true,
   },
   {
-    tag: tx(locale, "Votre méthode dans SOKAI", "Your methodology in SOKAI"),
-    title: tx(locale, "Exercices sur mesure", "Custom drills"),
-    price: "299 $",
-    suffix: tx(locale, "à partir de", "starting from"),
+    tag: tx(locale, "Votre méthode dans SOKAI", "Your methodology inside SOKAI"),
+    title: tx(locale, "Des exercices sur mesure pour votre club", "Custom Drills for Your Club"),
     description: tx(
       locale,
-      "Co-construisez des exercices alignés avec les objectifs et la pédagogie de votre club.",
-      "Co-create drills aligned with your club's goals and coaching philosophy.",
+      "Travaillez avec SOKAI pour créer des exercices personnalisés selon la méthodologie, les objectifs et l'approche de votre club.",
+      "Work with SOKAI to create custom drills based on your club's methodology, goals and coaching approach.",
     ),
     features: [
       tx(locale, "Mécaniques définies avec votre staff", "Training mechanics defined with your staff"),
@@ -187,7 +188,7 @@ const getClubOffers = (locale: Locale) => [
       tx(locale, "Durée, répétitions et scoring configurés", "Configured duration, repetitions and scoring"),
       tx(locale, "Intégration directe dans l'application", "Direct integration into the app"),
     ],
-    cta: tx(locale, "Demander un devis", "Request a quote"),
+    cta: tx(locale, "Parler de votre projet", "Discuss Your Project"),
   },
 ];
 
@@ -298,7 +299,7 @@ function Nav({ locale }: { locale: Locale }) {
           className="nav-links"
           aria-label={tx(locale, "Navigation principale", "Main navigation")}
         >
-          <Link href="#players">{tx(locale, "Pour les joueurs", "For players")}</Link>
+          <Link href="#players">{tx(locale, "Pour les joueurs", "For your child")}</Link>
           <Link href="#clubs">{tx(locale, "Pour les clubs", "For clubs")}</Link>
           <Link href="#offers">{tx(locale, "Les offres", "Plans")}</Link>
         </nav>
@@ -348,7 +349,7 @@ function Nav({ locale }: { locale: Locale }) {
             exit={{ opacity: 0, y: -12 }}
           >
             <Link href="#players" onClick={() => setOpen(false)}>
-              {tx(locale, "Pour les joueurs", "For players")}
+              {tx(locale, "Pour les joueurs", "For your child")}
             </Link>
             <Link href="#clubs" onClick={() => setOpen(false)}>
               {tx(locale, "Pour les clubs", "For clubs")}
@@ -390,20 +391,20 @@ function Hero({ locale }: { locale: Locale }) {
           <div className="eyebrow">
             <span className="eyebrow__dot" /> {tx(
               locale,
-              "L'app d'entraînement football est disponible",
-              "The football training app is here",
+              "Pensé pour progresser entre deux entraînements collectifs",
+              "Built for the work between team practices",
             )}
           </div>
           <h1>
-            20 minutes.
-            <span>{tx(locale, "Un ballon. Ton téléphone.", "One ball. Your phone.")}</span>
-            <em>{tx(locale, "Progresse.", "Improve.")}</em>
+            {tx(locale, "Ce n’est pas le talent.", "It’s not talent.")}
+            <span>{tx(locale, "Ce sont les touches de balle.", "It’s touches.")}</span>
+            <em>{tx(locale, "Multipliez-les à la maison.", "Get more at home.")}</em>
           </h1>
           <p className="hero__lead">
             {tx(
               locale,
-              "SOKAI transforme l'entraînement à la maison en jeu : la caméra suit, le score mesure, la progression motive.",
-              "SOKAI turns training at home into a game: the camera tracks, the score measures and your progress keeps you motivated.",
+              "SOKAI donne à votre enfant plus de 200 touches de balle dès 15 minutes grâce à un entraînement guidé et ludique à la maison — sans vous transformer en coach.",
+              "SOKAI gives your child 200+ touches in as little as 15 minutes with guided, gamified training at home—without turning you into the coach.",
             )}
           </p>
 
@@ -412,10 +413,10 @@ function Hero({ locale }: { locale: Locale }) {
             aria-label={tx(locale, "Choisir votre parcours", "Choose your path")}
           >
             <a href="#players" className="hero-path hero-path--player">
-              <Target size={18} /> {tx(locale, "Je suis joueur", "I'm a player")}
+              <Target size={18} /> {tx(locale, "Pour mon enfant", "For my child")}
             </a>
             <a href="#clubs" className="hero-path hero-path--club">
-              <Users size={18} /> {tx(locale, "Je suis club / coach", "I'm a club / coach")}
+              <Users size={18} /> {tx(locale, "Pour mon club", "For my club")}
             </a>
           </div>
 
@@ -455,7 +456,7 @@ function Hero({ locale }: { locale: Locale }) {
             }}
           >
             <PhoneFrame
-              src="/app-start.png"
+              src="/app-home.png"
               alt={tx(locale, "Écran d'accueil SOKAI", "SOKAI home screen")}
               priority
             />
@@ -476,8 +477,8 @@ function Hero({ locale }: { locale: Locale }) {
           >
             <Target size={18} />
             <span>
-              <strong>{tx(locale, "Suivi en direct", "Live tracking")}</strong>{" "}
-              {tx(locale, "scores instantanés", "instant scores")}
+              <strong>{tx(locale, "Suivi des progrès", "Progress tracking")}</strong>{" "}
+              {tx(locale, "scores et répétitions", "scores and repetitions")}
             </span>
           </motion.div>
           <div className="hero__orbit hero__orbit--one" />
@@ -487,8 +488,12 @@ function Hero({ locale }: { locale: Locale }) {
 
       <div className="hero-ticker" aria-hidden="true">
         <div>
-          <span>PLAY</span><i>✦</i><span>HAVE FUN</span><i>✦</i><span>IMPROVE</span><i>✦</i>
-          <span>START THE GAME</span><i>✦</i><span>PLAY</span><i>✦</i><span>HAVE FUN</span>
+          <span>{tx(locale, "JOUE", "PLAY")}</span><i>✦</i>
+          <span>{tx(locale, "PROGRESSE", "IMPROVE")}</span><i>✦</i>
+          <span>{tx(locale, "RECOMMENCE", "REPEAT")}</span><i>✦</i>
+          <span>{tx(locale, "À LA MAISON", "AT HOME")}</span><i>✦</i>
+          <span>{tx(locale, "JOUE", "PLAY")}</span><i>✦</i>
+          <span>{tx(locale, "PROGRESSE", "IMPROVE")}</span>
         </div>
       </div>
     </section>
@@ -522,15 +527,15 @@ function PlayerStory({ locale }: { locale: Locale }) {
               </span>
               <h2>{tx(
                 locale,
-                "Le talent se travaille aussi entre deux entraînements.",
-                "Talent is built between team sessions too.",
+                "Le club entraîne l’équipe. SOKAI aide votre enfant à progresser.",
+                "The club trains the team. SOKAI helps train your child.",
               )}</h2>
             </div>
             <p>
               {tx(
                 locale,
-                "Les séances collectives ne laissent pas toujours le temps de répéter. SOKAI ajoute une routine individuelle courte, mesurable et motivante à la maison.",
-                "Team sessions don't always leave enough time for repetition. SOKAI adds a short, measurable and motivating individual routine at home.",
+                "L’entraînement collectif ne peut pas offrir à chaque joueur assez de répétitions individuelles. Une séance SOKAI commence à 15 minutes et vise plus de 200 touches de balle à la maison entre deux entraînements.",
+                "Team practice cannot give every player enough individual repetition. A SOKAI session starts at 15 minutes and targets 200+ touches at home between team practices.",
               )}
             </p>
           </div>
@@ -571,14 +576,14 @@ function PlayerStory({ locale }: { locale: Locale }) {
             </span>
             <h2>{tx(
               locale,
-              "Tout ce qui donne envie de jouer. Et de rejouer.",
-              "Everything that makes you want to play. And play again.",
+              "Un entraînement que votre enfant aura vraiment envie de faire. Et de refaire.",
+              "Practice they’ll actually want to do. And do again.",
             )}</h2>
             <p>
               {tx(
                 locale,
-                "Découvre un parcours qui transforme chaque session en preuve de progression — du premier exercice jusqu'au classement.",
-                "Discover a journey that turns every session into proof of progress — from your first drill to the leaderboard.",
+                "Des exercices guidés, des niveaux clairs et une progression visible transforment la répétition en jeu — du premier exercice jusqu’au classement.",
+                "Guided drills, clear levels and visible progress turn repetition into play—from the first drill to the leaderboard.",
               )}
             </p>
 
@@ -677,9 +682,9 @@ function PlayerStory({ locale }: { locale: Locale }) {
             <h2>{tx(locale, "Un petit créneau. Une vraie habitude.", "A short session. A lasting habit.")}</h2>
             <div className="steps-grid">
               {[
-                [Smartphone, tx(locale, "Pose le téléphone", "Set up your phone"), tx(locale, "Cadre-toi, l'app te guide.", "Get in frame and let the app guide you.")],
-                [Dumbbell, tx(locale, "Choisis ton exercice", "Choose your drill"), tx(locale, "Contrôle, jongle, coordination.", "Ball control, keepy-uppies, coordination.")],
-                [Play, tx(locale, "Joue 20 minutes", "Play for 20 minutes"), tx(locale, "SOKAI suit ta performance.", "SOKAI tracks your performance.")],
+                [Smartphone, tx(locale, "Ouvre SOKAI", "Open SOKAI"), tx(locale, "L'application te montre exactement quoi faire.", "The app shows you exactly what to do.")],
+                [Dumbbell, tx(locale, "Choisis ton exercice", "Choose your drill"), tx(locale, "Sélectionne un exercice dans ton parcours, puis lance la séance.", "Pick a drill from your training path, then start the session.")],
+                [Play, tx(locale, "Entraîne-toi pendant 20 minutes", "Train for 20 minutes"), tx(locale, "SOKAI suit tes scores et tes répétitions.", "SOKAI tracks your scores and repetitions.")],
                 [LineChart, tx(locale, "Vois tes progrès", "See your progress"), tx(locale, "XP, stats, séries et classement.", "XP, stats, streaks and rankings.")],
               ].map(([Icon, title, copy], index) => {
                 const StepIcon = Icon as typeof Smartphone;
@@ -699,7 +704,32 @@ function PlayerStory({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+
+      <MascotBridge image="/sakina.png" variant="sakina" />
     </>
+  );
+}
+
+function MascotBridge({ image, variant }: { image: string; variant: "sakina" | "satashi" }) {
+  return (
+    <div className={`mascot-bridge mascot-bridge--${variant}`} aria-hidden="true">
+      <div className="mascot-bridge__grid" />
+      <motion.div
+        className="mascot-bridge__glow"
+        initial={{ opacity: 0, scale: 0.82 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.4 }}
+      />
+      <motion.div
+        className="mascot-bridge__character"
+        initial={{ opacity: 0, y: 42 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.35 }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Image src={image} alt="" width={420} height={420} sizes="(max-width: 700px) 230px, 360px" />
+      </motion.div>
+    </div>
   );
 }
 
@@ -894,6 +924,8 @@ function ClubSection({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      <MascotBridge image="/satashi.png" variant="satashi" />
+
       <section className="offers-section" id="offers">
         <div className="section-shell">
           <div className="offers-heading">
@@ -931,7 +963,6 @@ function ClubSection({ locale }: { locale: Locale }) {
                 )}
                 <span className="offer-card__tag">{offer.tag}</span>
                 <h3>{offer.title}</h3>
-                <div className="offer-price"><strong>{offer.price}</strong><span>{offer.suffix}</span></div>
                 <p>{offer.description}</p>
                 <ul>
                   {offer.features.map((feature) => (
@@ -948,8 +979,8 @@ function ClubSection({ locale }: { locale: Locale }) {
           <p className="pricing-note">
             {tx(
               locale,
-              "Les tarifs indiqués sont des points de départ. Les conditions finales dépendent du nombre d'équipes, de joueurs et du niveau de personnalisation demandé.",
-              "The prices shown are starting points. Final terms depend on the number of teams and players, and the level of customization required.",
+              "Parent, coach, dirigeant de club ou responsable d'académie : il existe une solution SOKAI pour vous.",
+              "Parent, coach, club director or academy leader—there's a SOKAI path for you.",
             )}
           </p>
         </div>
@@ -970,7 +1001,7 @@ function FaqAndCta({ locale }: { locale: Locale }) {
     ],
     [
       tx(locale, "Comment l'application mesure-t-elle la progression ?", "How does the app measure progress?"),
-      tx(locale, "La caméra analyse les mouvements directement sur l'appareil. SOKAI suit ensuite les scores, répétitions, temps d'entraînement, XP et séries.", "The camera analyzes movements directly on the device. SOKAI then tracks scores, repetitions, training time, XP and streaks."),
+      tx(locale, "Notre système intelligent analyse les mouvements directement sur l'appareil. SOKAI suit ensuite les scores, répétitions, temps d'entraînement, XP et séries.", "Our smart system analyzes movements directly on the device. SOKAI then tracks scores, repetitions, training time, XP and streaks."),
     ],
     [
       tx(locale, "Un coach peut-il assigner des exercices ?", "Can a coach assign drills?"),
@@ -1040,16 +1071,24 @@ function Footer({ locale }: { locale: Locale }) {
           <Image src="/sokaiclub.png" alt="SOKAI Club" width={62} height={62} />
           <div><strong>SOKAI</strong><span>Play. Have fun. Improve.</span></div>
         </div>
-        <div className="footer__links">
-          <Link href="#players">{tx(locale, "Joueurs", "Players")}</Link>
-          <Link href="#clubs">Clubs</Link>
-          <a href="https://app.sokai.club/support" target="_blank" rel="noreferrer">Support</a>
-          <a href="https://app.sokai.club/privacy" target="_blank" rel="noreferrer">
-            {tx(locale, "Confidentialité", "Privacy")}
-          </a>
-          <a href="https://app.sokai.club/terms" target="_blank" rel="noreferrer">
-            {tx(locale, "Conditions", "Terms")}
-          </a>
+        <div className="footer__right">
+          <div className="footer__links">
+            <Link href="#players">{tx(locale, "Joueurs", "Players")}</Link>
+            <Link href="#clubs">Clubs</Link>
+            <a href="https://app.sokai.club/support" target="_blank" rel="noreferrer">Support</a>
+            <a href="https://app.sokai.club/privacy" target="_blank" rel="noreferrer">
+              {tx(locale, "Confidentialité", "Privacy")}
+            </a>
+            <a href="https://app.sokai.club/terms" target="_blank" rel="noreferrer">
+              {tx(locale, "Conditions", "Terms")}
+            </a>
+          </div>
+          <div className="footer__socials">
+            <a href="https://www.instagram.com/sokaiclub/" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
+            <a href="https://www.tiktok.com/@sokai.club" target="_blank" rel="noreferrer" aria-label="TikTok"><FaTiktok /></a>
+            <a href="https://www.youtube.com/@Sokai_club" target="_blank" rel="noreferrer" aria-label="YouTube"><FaYoutube /></a>
+            <a href="https://x.com/Sokai_Fc" target="_blank" rel="noreferrer" aria-label="X"><FaXTwitter /></a>
+          </div>
         </div>
         <p>© {new Date().getFullYear()} SOKAI GROUP. {tx(locale, "Tous droits réservés.", "All rights reserved.")}</p>
       </div>
